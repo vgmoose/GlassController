@@ -26,6 +26,11 @@
 
 /* Begin PBXFileReference section */
 		9C345B4C200B157E00B54969 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		9C345B4E200B26F100B54969 /* GlassCon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = GlassCon.xcodeproj; sourceTree = "<group>"; };
+		9C345B51200B26FE00B54969 /* xcuserdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = xcuserdata; path = GlassCon.xcodeproj/xcuserdata; sourceTree = "<group>"; };
+		9C345B53200B273A00B54969 /* SDL2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SDL2; path = ../../../../../../../usr/local/include/SDL2; sourceTree = "<group>"; };
+		9C345B57200B2A3E00B54969 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
+		9C345B5A200B2AC100B54969 /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2main.a; sourceTree = "<group>"; };
 		9C46F5902009B7E900F9E926 /* gamecon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gamecon; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C46F5932009B7E900F9E926 /* Main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Main.c; sourceTree = "<group>"; };
 		9C46F5982009B81800F9E926 /* MultitouchSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultitouchSupport.h; sourceTree = "<group>"; };
@@ -46,6 +51,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C345B4F200B26F100B54969 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9C46F5852009B7C000F9E926 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +87,11 @@
 		9C46F59C2009BCEE00F9E926 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C345B5A200B2AC100B54969 /* libSDL2main.a */,
+				9C345B57200B2A3E00B54969 /* libSDL2.a */,
+				9C345B53200B273A00B54969 /* SDL2 */,
+				9C345B51200B26FE00B54969 /* xcuserdata */,
+				9C345B4E200B26F100B54969 /* GlassCon.xcodeproj */,
 				9C345B4C200B157E00B54969 /* ApplicationServices.framework */,
 				9C46F59D2009BCEF00F9E926 /* CoreGraphics.framework */,
 			);
@@ -127,6 +142,12 @@
 			mainGroup = 9C46F5852009B7C000F9E926;
 			productRefGroup = 9C46F5912009B7E900F9E926 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9C345B4F200B26F100B54969 /* Products */;
+					ProjectRef = 9C345B4E200B26F100B54969 /* GlassCon.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9C46F58F2009B7E900F9E926 /* gamecon */,
@@ -150,12 +171,20 @@
 		9C46F58A2009B7C000F9E926 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_CFLAGS = (
+					"-lSDL2",
+					"-lSDL2main",
+				);
 			};
 			name = Debug;
 		};
 		9C46F58B2009B7C000F9E926 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_CFLAGS = (
+					"-lSDL2",
+					"-lSDL2main",
+				);
 			};
 			name = Release;
 		};
@@ -209,14 +238,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sdl2/2.0.7/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-lSDL2";
+				OTHER_CFLAGS = (
+					"-I/usr/local/include",
+					"-lSDL2",
+				);
 				OTHER_LDFLAGS = (
 					"-F/System/Library/PrivateFrameworks",
 					"-framework",
 					MultitouchSupport,
+					"-lSDL2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -267,13 +304,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sdl2/2.0.7/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "-lSDL2";
+				OTHER_CFLAGS = (
+					"-I/usr/local/include",
+					"-lSDL2",
+				);
 				OTHER_LDFLAGS = (
 					"-F/System/Library/PrivateFrameworks",
 					"-framework",
 					MultitouchSupport,
+					"-lSDL2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

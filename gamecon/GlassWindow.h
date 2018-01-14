@@ -9,5 +9,11 @@
 #define GlassWindow_h
 
 #include <stdio.h>
+typedef struct GlassWindow GlassWindow;
+
+struct GlassWindow
+{
+    
+};
 
 #endif /* GlassWindow_h */
