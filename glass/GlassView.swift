@@ -1,10 +1,3 @@
-//
-//  GlassView.swift
-//  glass
-//
-//  Created by Ricky Ayoub on 1/15/18.
-//
-
 import Foundation
 import AppKit
 
@@ -15,18 +8,63 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
     view.fingers = fingers
     view.refresh()
     
+    // newly pressed value
+    var pressed:Set<Int> = Set()
+    
+    // if it's in the bottom right, send an S
+    for finger in fingers
+    {
+        if finger.normalized.pos.x > 0.5 && finger.normalized.pos.y > 0.5
+        {
+            // add 0x01 to the newly "pressed" buttons
+            pressed.insert(0x01)
+        }
+    }
+    
+    // clone the newly pressed array to prepare for the subtractions below
+    let pressedClone = Set(pressed)
+    
+    // remove the overlap of old pressed from the new, to get just the new
+    pressed.subtract(view.pressed)
+    let newlyPressed = pressed
+    
+    // remove the overlap of new pressed from the old, to get just the old
+    view.pressed.subtract(pressedClone)
+    let newlyReleased = view.pressed
+    
+    // press down any new keys that we saw
+    for key in newlyPressed {
+        view.sendKey(key, true)
+    }
+    
+    // release any old keys that we didn't see
+    for key in newlyReleased {
+        view.sendKey(key, false)
+    }
+    
+    // update which keys are down right now
+    view.pressed = pressedClone
+    
     return 0;
 }
 
 class GlassView : NSView
 {
     var fingers: [Finger] = []
+    var pressed:Set<Int> = Set()
     
     func refresh()
     {
         DispatchQueue.main.sync {
             self.needsDisplay = true
         }
+    }
+    
+    func sendKey(_ keyCode: Int, _ enabled: Bool)
+    {
+        let inputKeyCode = CGKeyCode(keyCode)
+        let event = CGEvent(keyboardEventSource: nil, virtualKey: inputKeyCode, keyDown: enabled)
+        event!.post(tap: .cghidEventTap)
     }
     
     override func draw(_ rect: NSRect)

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C522ED2200C703700E201B5 /* Touchpad.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C46F5932009B7E900F9E926 /* Touchpad.c */; };
 		9C522ED3200C704C00E201B5 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C345B4C200B157E00B54969 /* ApplicationServices.framework */; };
 		9C522ED4200C707B00E201B5 /* MultitouchSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */; };
 		9C522ED7200C771900E201B5 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED6200C771900E201B5 /* GlassView.swift */; };
@@ -33,7 +32,6 @@
 		9C345B53200B273A00B54969 /* SDL2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SDL2; path = ../../../../../../../usr/local/include/SDL2; sourceTree = "<group>"; };
 		9C345B57200B2A3E00B54969 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
 		9C345B5A200B2AC100B54969 /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2main.a; sourceTree = "<group>"; };
-		9C46F5932009B7E900F9E926 /* Touchpad.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Touchpad.c; sourceTree = "<group>"; };
 		9C46F5982009B81800F9E926 /* MultitouchSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultitouchSupport.h; sourceTree = "<group>"; };
 		9C46F59D2009BCEF00F9E926 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9C522EC9200C6D8900E201B5 /* glass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = glass; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,7 +39,6 @@
 		9C522ED6200C771900E201B5 /* GlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassView.swift; sourceTree = "<group>"; };
 		9C522ED8200C777B00E201B5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
-		9CF17B3E200C55E300B65DC5 /* Touchpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Touchpad.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +94,6 @@
 		9C522ECA200C6D8900E201B5 /* glass */ = {
 			isa = PBXGroup;
 			children = (
-				9CF17B3E200C55E300B65DC5 /* Touchpad.h */,
-				9C46F5932009B7E900F9E926 /* Touchpad.c */,
 				9C46F5982009B81800F9E926 /* MultitouchSupport.h */,
 				9C522ED8200C777B00E201B5 /* main.swift */,
 				9C522ED6200C771900E201B5 /* GlassView.swift */,
@@ -174,7 +169,6 @@
 			files = (
 				9C522ED9200C777B00E201B5 /* main.swift in Sources */,
 				9C522ED7200C771900E201B5 /* GlassView.swift in Sources */,
-				9C522ED2200C703700E201B5 /* Touchpad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

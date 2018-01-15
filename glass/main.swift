@@ -1,10 +1,3 @@
-//
-//  Main.swift
-//  glass
-//
-//  Created by Ricky Ayoub on 1/15/18.
-//
-
 import Foundation
 import AppKit
 import Cocoa
