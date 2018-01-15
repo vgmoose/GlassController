@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C345B4D200B157E00B54969 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C345B4C200B157E00B54969 /* ApplicationServices.framework */; };
-		9C46F5942009B7E900F9E926 /* Main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C46F5932009B7E900F9E926 /* Main.c */; };
-		9C46F59B2009BA0000F9E926 /* GlassWindow.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C46F59A2009BA0000F9E926 /* GlassWindow.c */; };
+		9C522ED2200C703700E201B5 /* Touchpad.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C46F5932009B7E900F9E926 /* Touchpad.c */; };
+		9C522ED3200C704C00E201B5 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C345B4C200B157E00B54969 /* ApplicationServices.framework */; };
+		9C522ED4200C707B00E201B5 /* MultitouchSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */; };
+		9C522ED7200C771900E201B5 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED6200C771900E201B5 /* GlassView.swift */; };
+		9C522ED9200C777B00E201B5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED8200C777B00E201B5 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9C46F58E2009B7E900F9E926 /* CopyFiles */ = {
+		9C522EC7200C6D8900E201B5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -31,20 +33,24 @@
 		9C345B53200B273A00B54969 /* SDL2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SDL2; path = ../../../../../../../usr/local/include/SDL2; sourceTree = "<group>"; };
 		9C345B57200B2A3E00B54969 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
 		9C345B5A200B2AC100B54969 /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2main.a; sourceTree = "<group>"; };
-		9C46F5902009B7E900F9E926 /* gamecon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gamecon; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C46F5932009B7E900F9E926 /* Main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Main.c; sourceTree = "<group>"; };
+		9C46F5932009B7E900F9E926 /* Touchpad.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Touchpad.c; sourceTree = "<group>"; };
 		9C46F5982009B81800F9E926 /* MultitouchSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultitouchSupport.h; sourceTree = "<group>"; };
-		9C46F5992009BA0000F9E926 /* GlassWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlassWindow.h; sourceTree = "<group>"; };
-		9C46F59A2009BA0000F9E926 /* GlassWindow.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GlassWindow.c; sourceTree = "<group>"; };
 		9C46F59D2009BCEF00F9E926 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9C522EC9200C6D8900E201B5 /* glass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = glass; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C522ED5200C771900E201B5 /* glass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "glass-Bridging-Header.h"; sourceTree = "<group>"; };
+		9C522ED6200C771900E201B5 /* GlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassView.swift; sourceTree = "<group>"; };
+		9C522ED8200C777B00E201B5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
+		9CF17B3E200C55E300B65DC5 /* Touchpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Touchpad.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9C46F58D2009B7E900F9E926 /* Frameworks */ = {
+		9C522EC6200C6D8900E201B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C345B4D200B157E00B54969 /* ApplicationServices.framework in Frameworks */,
+				9C522ED4200C707B00E201B5 /* MultitouchSupport.framework in Frameworks */,
+				9C522ED3200C704C00E201B5 /* ApplicationServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +65,7 @@
 		9C46F5852009B7C000F9E926 = {
 			isa = PBXGroup;
 			children = (
-				9C46F5922009B7E900F9E926 /* gamecon */,
+				9C522ECA200C6D8900E201B5 /* glass */,
 				9C46F5912009B7E900F9E926 /* Products */,
 				9C46F59C2009BCEE00F9E926 /* Frameworks */,
 			);
@@ -68,25 +74,15 @@
 		9C46F5912009B7E900F9E926 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C46F5902009B7E900F9E926 /* gamecon */,
+				9C522EC9200C6D8900E201B5 /* glass */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9C46F5922009B7E900F9E926 /* gamecon */ = {
-			isa = PBXGroup;
-			children = (
-				9C46F5932009B7E900F9E926 /* Main.c */,
-				9C46F5982009B81800F9E926 /* MultitouchSupport.h */,
-				9C46F5992009BA0000F9E926 /* GlassWindow.h */,
-				9C46F59A2009BA0000F9E926 /* GlassWindow.c */,
-			);
-			path = gamecon;
 			sourceTree = "<group>";
 		};
 		9C46F59C2009BCEE00F9E926 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */,
 				9C345B5A200B2AC100B54969 /* libSDL2main.a */,
 				9C345B57200B2A3E00B54969 /* libSDL2.a */,
 				9C345B53200B273A00B54969 /* SDL2 */,
@@ -98,24 +94,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9C522ECA200C6D8900E201B5 /* glass */ = {
+			isa = PBXGroup;
+			children = (
+				9CF17B3E200C55E300B65DC5 /* Touchpad.h */,
+				9C46F5932009B7E900F9E926 /* Touchpad.c */,
+				9C46F5982009B81800F9E926 /* MultitouchSupport.h */,
+				9C522ED8200C777B00E201B5 /* main.swift */,
+				9C522ED6200C771900E201B5 /* GlassView.swift */,
+				9C522ED5200C771900E201B5 /* glass-Bridging-Header.h */,
+			);
+			path = glass;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C46F58F2009B7E900F9E926 /* gamecon */ = {
+		9C522EC8200C6D8900E201B5 /* glass */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C46F5952009B7E900F9E926 /* Build configuration list for PBXNativeTarget "gamecon" */;
+			buildConfigurationList = 9C522ECD200C6D8900E201B5 /* Build configuration list for PBXNativeTarget "glass" */;
 			buildPhases = (
-				9C46F58C2009B7E900F9E926 /* Sources */,
-				9C46F58D2009B7E900F9E926 /* Frameworks */,
-				9C46F58E2009B7E900F9E926 /* CopyFiles */,
+				9C522EC5200C6D8900E201B5 /* Sources */,
+				9C522EC6200C6D8900E201B5 /* Frameworks */,
+				9C522EC7200C6D8900E201B5 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = gamecon;
-			productName = gamecon;
-			productReference = 9C46F5902009B7E900F9E926 /* gamecon */;
+			name = glass;
+			productName = glass;
+			productReference = 9C522EC9200C6D8900E201B5 /* glass */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -124,10 +133,12 @@
 		9C46F5862009B7C000F9E926 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
 				TargetAttributes = {
-					9C46F58F2009B7E900F9E926 = {
+					9C522EC8200C6D8900E201B5 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -138,6 +149,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 9C46F5852009B7C000F9E926;
 			productRefGroup = 9C46F5912009B7E900F9E926 /* Products */;
@@ -150,18 +162,19 @@
 			);
 			projectRoot = "";
 			targets = (
-				9C46F58F2009B7E900F9E926 /* gamecon */,
+				9C522EC8200C6D8900E201B5 /* glass */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9C46F58C2009B7E900F9E926 /* Sources */ = {
+		9C522EC5200C6D8900E201B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C46F59B2009BA0000F9E926 /* GlassWindow.c in Sources */,
-				9C46F5942009B7E900F9E926 /* Main.c in Sources */,
+				9C522ED9200C777B00E201B5 /* main.swift in Sources */,
+				9C522ED7200C771900E201B5 /* GlassView.swift in Sources */,
+				9C522ED2200C703700E201B5 /* Touchpad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,24 +184,16 @@
 		9C46F58A2009B7C000F9E926 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				OTHER_CFLAGS = (
-					"-lSDL2",
-					"-lSDL2main",
-				);
 			};
 			name = Debug;
 		};
 		9C46F58B2009B7C000F9E926 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				OTHER_CFLAGS = (
-					"-lSDL2",
-					"-lSDL2main",
-				);
 			};
 			name = Release;
 		};
-		9C46F5962009B7E900F9E926 /* Debug */ = {
+		9C522ECE200C6D8900E201B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -224,6 +229,10 @@
 				DEVELOPMENT_TEAM = C34C2M7MC7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -238,29 +247,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/sdl2/2.0.7/lib,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = (
-					"-I/usr/local/include",
-					"-lSDL2",
-				);
-				OTHER_LDFLAGS = (
-					"-F/System/Library/PrivateFrameworks",
-					"-framework",
-					MultitouchSupport,
-					"-lSDL2",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "glass/glass-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		9C46F5972009B7E900F9E926 /* Release */ = {
+		9C522ECF200C6D8900E201B5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -296,6 +295,10 @@
 				DEVELOPMENT_TEAM = C34C2M7MC7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -304,24 +307,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/sdl2/2.0.7/lib,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = (
-					"-I/usr/local/include",
-					"-lSDL2",
-				);
-				OTHER_LDFLAGS = (
-					"-F/System/Library/PrivateFrameworks",
-					"-framework",
-					MultitouchSupport,
-					"-lSDL2",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "glass/glass-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -337,11 +329,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C46F5952009B7E900F9E926 /* Build configuration list for PBXNativeTarget "gamecon" */ = {
+		9C522ECD200C6D8900E201B5 /* Build configuration list for PBXNativeTarget "glass" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9C46F5962009B7E900F9E926 /* Debug */,
-				9C46F5972009B7E900F9E926 /* Release */,
+				9C522ECE200C6D8900E201B5 /* Debug */,
+				9C522ECF200C6D8900E201B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
