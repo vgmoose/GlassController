@@ -42,7 +42,7 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
         view.sendKey(key, false)
     }
     
-    // update which keys are down right now
+    // update which keys are down right nowsss
     view.pressed = pressedClone
     
     return 0;
@@ -53,6 +53,8 @@ class GlassView : NSView
     var fingers: [Finger] = []
     var pressed:Set<Int> = Set()
     
+    var activated = false
+    
     func refresh()
     {
         DispatchQueue.main.sync {
@@ -60,11 +62,22 @@ class GlassView : NSView
         }
     }
     
+    func showGlass()
+    {
+        showPreviewWindow()
+    }
+    
     func sendKey(_ keyCode: Int, _ enabled: Bool)
     {
+        if !self.activated
+        {
+            return
+        }
+        
         let inputKeyCode = CGKeyCode(keyCode)
         let event = CGEvent(keyboardEventSource: nil, virtualKey: inputKeyCode, keyDown: enabled)
         event!.post(tap: .cghidEventTap)
+        print("posted S")
     }
     
     override func draw(_ rect: NSRect)
@@ -73,10 +86,11 @@ class GlassView : NSView
         {
             var center = CGPoint()
             let bounds = self.bounds
-            center.x = CGFloat(finger.normalized.pos.x * Float(bounds.width))
-            center.y = CGFloat(finger.normalized.pos.y * Float(bounds.height))
-
+            
             let radius = CGSize(width: CGFloat(finger.size)*20, height: CGFloat(finger.size)*20)
+
+            center.x = CGFloat(finger.normalized.pos.x * Float(bounds.width)) - CGFloat(radius.width/2)
+            center.y = CGFloat(finger.normalized.pos.y * Float(bounds.height)) - CGFloat(radius.height/2)
 
             let path = NSBezierPath(ovalIn: CGRect(origin: center, size: radius))
             NSColor.gray.setFill()
