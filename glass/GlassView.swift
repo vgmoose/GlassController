@@ -51,6 +51,7 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
 class GlassView : NSView
 {
     var fingers: [Finger] = []
+    var regions: [Region] = []
     var pressed:Set<Int> = Set()
     
     var activated = false
