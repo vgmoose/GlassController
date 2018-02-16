@@ -14,6 +14,7 @@
 		9C522ED4200C707B00E201B5 /* MultitouchSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */; };
 		9C522ED7200C771900E201B5 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED6200C771900E201B5 /* GlassView.swift */; };
 		9C522ED9200C777B00E201B5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED8200C777B00E201B5 /* main.swift */; };
+		9C6A663B2036AB1B008B3321 /* GlassPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A663A2036AB1B008B3321 /* GlassPreferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,10 +42,11 @@
 		9C34F9A7200EED0100EA3EA7 /* VirtualKeyboard.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = VirtualKeyboard.c; sourceTree = "<group>"; };
 		9C46F5982009B81800F9E926 /* MultitouchSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultitouchSupport.h; sourceTree = "<group>"; };
 		9C46F59D2009BCEF00F9E926 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9C522EC9200C6D8900E201B5 /* glass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = glass; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C522EC9200C6D8900E201B5 /* GlassCon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GlassCon; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C522ED5200C771900E201B5 /* glass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "glass-Bridging-Header.h"; sourceTree = "<group>"; };
 		9C522ED6200C771900E201B5 /* GlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassView.swift; sourceTree = "<group>"; };
 		9C522ED8200C777B00E201B5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		9C6A663A2036AB1B008B3321 /* GlassPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassPreferences.swift; sourceTree = "<group>"; };
 		9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +81,7 @@
 		9C46F5912009B7E900F9E926 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C522EC9200C6D8900E201B5 /* glass */,
+				9C522EC9200C6D8900E201B5 /* GlassCon */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,6 +112,7 @@
 				9C34F9A6200EED0100EA3EA7 /* VirtualKeyboard.h */,
 				9C34F9A7200EED0100EA3EA7 /* VirtualKeyboard.c */,
 				9C33D8C7202F0D33006968DE /* Region.swift */,
+				9C6A663A2036AB1B008B3321 /* GlassPreferences.swift */,
 			);
 			path = glass;
 			sourceTree = "<group>";
@@ -117,9 +120,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C522EC8200C6D8900E201B5 /* glass */ = {
+		9C522EC8200C6D8900E201B5 /* GlassCon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C522ECD200C6D8900E201B5 /* Build configuration list for PBXNativeTarget "glass" */;
+			buildConfigurationList = 9C522ECD200C6D8900E201B5 /* Build configuration list for PBXNativeTarget "GlassCon" */;
 			buildPhases = (
 				9C522EC5200C6D8900E201B5 /* Sources */,
 				9C522EC6200C6D8900E201B5 /* Frameworks */,
@@ -129,9 +132,9 @@
 			);
 			dependencies = (
 			);
-			name = glass;
+			name = GlassCon;
 			productName = glass;
-			productReference = 9C522EC9200C6D8900E201B5 /* glass */;
+			productReference = 9C522EC9200C6D8900E201B5 /* GlassCon */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -169,7 +172,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				9C522EC8200C6D8900E201B5 /* glass */,
+				9C522EC8200C6D8900E201B5 /* GlassCon */,
 			);
 		};
 /* End PBXProject section */
@@ -182,6 +185,7 @@
 				9C522ED9200C777B00E201B5 /* main.swift in Sources */,
 				9C34F9A8200EED0100EA3EA7 /* VirtualKeyboard.c in Sources */,
 				9C522ED7200C771900E201B5 /* GlassView.swift in Sources */,
+				9C6A663B2036AB1B008B3321 /* GlassPreferences.swift in Sources */,
 				9C33D8C8202F0D33006968DE /* Region.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,7 +341,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C522ECD200C6D8900E201B5 /* Build configuration list for PBXNativeTarget "glass" */ = {
+		9C522ECD200C6D8900E201B5 /* Build configuration list for PBXNativeTarget "GlassCon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C522ECE200C6D8900E201B5 /* Debug */,

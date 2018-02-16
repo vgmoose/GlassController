@@ -2,17 +2,27 @@ import Foundation
 import AppKit
 import Cocoa
 
+// initialize the application
 NSApplication.shared()
-NSApp.setActivationPolicy(.regular)
 
+// hide the dock icon (same as LSUIElement true in Info.plist)
+NSApp.setActivationPolicy(.accessory)
+
+// We have to generate everything programatically for the private touchpad API
+// callback to work properly (I don't know why this is)
+
+// the window that will house the glassview
 var previewWindow: NSWindow?
+
+// the glass touchpad preview view
 let frameRect = NSMakeRect(0, 0, 800, 450)
 let view = GlassView(frame: frameRect)
+let glassView = view
 
 func showPreviewWindow()
 {
     // window already being displayed, return
-    if previewWindow != nil { previewWindow = nil }
+    if previewWindow != nil { return }
     
     let window = NSWindow(contentRect: frameRect, styleMask: [.titled, .closable], backing: .buffered, defer: false)
     previewWindow = window;
@@ -24,72 +34,38 @@ func showPreviewWindow()
     window.cascadeTopLeft(from: NSMakePoint(20, 20))
     window.title = "Touchpad Preview"
     window.makeKeyAndOrderFront(nil)
-
 }
 
-func showConfigWindow()
+func setupMenuBar()
 {
-    let WIDTH = CGFloat(400)
-    let HEIGHT = CGFloat(350)
+    // create some status bar entries
+    var app = NSApplication.shared()
     
-    let configRect = NSMakeRect(0, 0, WIDTH, HEIGHT)
-    let window = NSWindow(contentRect: configRect, styleMask: [.titled, .closable], backing: .buffered, defer: false)
+    var menuBar = NSMenu()
+    var appMenuItem = NSMenuItem()
+    menuBar.addItem(appMenuItem)
+    app.mainMenu = menuBar
     
-    let inner = NSView(frame: configRect)
-    inner.isHidden = false
-    inner.needsDisplay = true
-    window.contentView = inner
+    var appMenu = NSMenu()
     
-    // preview button
-    let button = NSButton()
-    button.setButtonType(.momentaryLight)
-    button.bezelStyle = .rounded
-    button.target = view
-    button.action = Selector("showGlass")
-    button.frame = NSMakeRect(0, 0, 250, 20)
-    button.title = "Show Touchpad Preview"
-    inner.addSubview(button)
+    let enabledButton = NSMenuItem(title: "Enable GlassCon", action: #selector(GlassPreferences.showConfigWindow), keyEquivalent: "")
+    enabledButton.state = NSOnState
+    appMenu.addItem(enabledButton)
+    
+    let preferencesButton = NSMenuItem(title: "Preferences", action: #selector(GlassPreferences.showConfigWindow), keyEquivalent: "")
+    preferencesButton.target = GlassPreferences.self
+    appMenu.addItem(preferencesButton)
 
-    // checkbox to totally enable/disable action listeners
-    let checkbox = NSButton()
-    checkbox.setButtonType(NSSwitchButton)
-    checkbox.title = "Activate Glass Controller"
-    checkbox.frame = NSMakeRect(0, 0, 250, 20)
-    checkbox.frame.origin = CGPoint(x: 0, y: 50)
-    inner.addSubview(checkbox)
+//    let previewButton = NSMenuItem(title: "Touchpad Preview", action: #selector(glassView.showGlass), keyEquivalent: "")
+//    previewButton.target = glassView
+//    appMenu.addItem(previewButton)
     
-    // the + and - buttons for regions
-    let controls = NSSegmentedControl()
-    controls.frame = NSMakeRect(0, 0, 100, 20)
-    controls.frame.origin = CGPoint(x: 0, y: 80)
-    controls.segmentCount = 2
-    controls.setLabel("+", forSegment: 0)
-    controls.setLabel("-", forSegment: 1)
-    controls.segmentStyle = .smallSquare
-    if #available(OSX 10.10.3, *) {
-        controls.trackingMode = .momentary
-    }
-    inner.addSubview(controls)
+    appMenu.addItem(NSMenuItem(title: "Quit", action: Selector("terminate:"), keyEquivalent: ""))
+    appMenuItem.submenu = appMenu
     
-    // the current regions on the touchpad and action mappings
-    let tableContainer = NSScrollView(frame:NSMakeRect(0, 0, WIDTH, HEIGHT-100))
-    let tableView = NSTableView(frame:NSMakeRect(0, 0, WIDTH-16, HEIGHT-100))
-    tableView.addTableColumn(NSTableColumn(identifier: "Action"))
-    tableView.addTableColumn(NSTableColumn(identifier: "X"))
-    tableView.addTableColumn(NSTableColumn(identifier: "Y"))
-    tableView.addTableColumn(NSTableColumn(identifier: "width"))
-    tableView.addTableColumn(NSTableColumn(identifier: "height"))
-    tableContainer.frame.origin = CGPoint(x: 0, y: 100)
-//    tableView.setDelegate(self)
-//    tableView.setDataSource(self)
-    tableView.reloadData()
-    tableContainer.documentView = tableView
-    tableContainer.hasVerticalScroller = true
-    inner.addSubview(tableContainer)
-    
-    window.cascadeTopLeft(from: NSMakePoint(20, 20))
-    window.title = "GlassCon Preferences"
-    window.makeKeyAndOrderFront(nil)
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    statusItem.title = "🎮"
+    statusItem.menu = appMenu
 }
 
 // start touch listener for touchpad event
@@ -97,8 +73,7 @@ let dev = MTDeviceCreateDefault()
 MTRegisterContactFrameCallback(dev, processTouchpadData);
 MTDeviceStart(dev, 0);
 
-// show the preferences window
-showConfigWindow()
+setupMenuBar()
 
 NSApp.activate(ignoringOtherApps: true)
 NSApp.run()
