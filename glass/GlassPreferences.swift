@@ -8,12 +8,21 @@
 import Foundation
 import AppKit
 
-class GlassPreferences : NSWindow
+class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 {
+    func createTableCol(_ tableView: NSTableView, _ text: String)
+    {
+        let col = NSTableColumn(identifier: text)
+        tableView.addTableColumn(col)
+        col.headerCell.stringValue = text
+    }
+    
     init()
     {
-        let WIDTH = CGFloat(400)
+        let WIDTH = CGFloat(550)
         let HEIGHT = CGFloat(350)
+        
+        glassView.regions.append(Region(0.5, 0.5, 0.3, 0.3))
         
         let configRect = NSMakeRect(0, 0, WIDTH, HEIGHT)
         super.init(contentRect: configRect, styleMask: [.titled, .closable], backing: .buffered, defer: false)
@@ -41,7 +50,7 @@ class GlassPreferences : NSWindow
         checkbox.title = "Activate Glass Controller"
         checkbox.frame = NSMakeRect(0, 0, 250, 20)
         checkbox.frame.origin = CGPoint(x: 0, y: 50)
-        checkbox.state = NSOnState
+        checkbox.state = getActivationState()
         inner.addSubview(checkbox)
         
         // the + and - buttons for regions
@@ -60,19 +69,39 @@ class GlassPreferences : NSWindow
         // the current regions on the touchpad and action mappings
         let tableContainer = NSScrollView(frame:NSMakeRect(0, 0, WIDTH, HEIGHT-100))
         let tableView = NSTableView(frame:NSMakeRect(0, 0, WIDTH-16, HEIGHT-100))
-        tableView.addTableColumn(NSTableColumn(identifier: "Action"))
-        tableView.addTableColumn(NSTableColumn(identifier: "X"))
-        tableView.addTableColumn(NSTableColumn(identifier: "Y"))
-        tableView.addTableColumn(NSTableColumn(identifier: "width"))
-        tableView.addTableColumn(NSTableColumn(identifier: "height"))
+        createTableCol(tableView, "Mapped Key")
+        createTableCol(tableView, "X")
+        createTableCol(tableView, "Y")
+        createTableCol(tableView, "Width")
+        createTableCol(tableView, "Height")
         tableContainer.frame.origin = CGPoint(x: 0, y: 100)
-        //    tableView.setDelegate(self)
-        //    tableView.setDataSource(self)
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.reloadData()
         tableContainer.documentView = tableView
         tableContainer.hasVerticalScroller = true
         inner.addSubview(tableContainer)
 
+    }
+    
+    func numberOfRows(in tableView: NSTableView) -> Int
+    {
+        return glassView.regions.count;
+    }
+    
+    func tableView(_ tableView: NSTableView,
+                   objectValueFor tableColumn: NSTableColumn?,
+                   row: Int) -> Any?
+    {
+        return glassView.regions[row].getValue((tableColumn?.identifier)!)
+    }
+    
+    static func toggleGlass()
+    {
+        // toggle the state of the glass controller
+        glassEnabled = !glassEnabled
+        
+        enabledMenuButton.state = getActivationState()
     }
     
     static func showConfigWindow()

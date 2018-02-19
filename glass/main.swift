@@ -19,6 +19,11 @@ let frameRect = NSMakeRect(0, 0, 800, 450)
 let view = GlassView(frame: frameRect)
 let glassView = view
 
+var enabledMenuButton = NSMenuItem(title: "Enable GlassCon", action: #selector(GlassPreferences.toggleGlass), keyEquivalent: "")
+
+
+var glassEnabled = true
+
 func showPreviewWindow()
 {
     // window already being displayed, return
@@ -36,6 +41,16 @@ func showPreviewWindow()
     window.makeKeyAndOrderFront(nil)
 }
 
+func getActivationState() -> NSControlStateValue
+{
+    if glassEnabled
+    {
+        return NSOnState
+    }
+    
+    return NSOffState
+}
+
 func setupMenuBar()
 {
     // create some status bar entries
@@ -48,9 +63,9 @@ func setupMenuBar()
     
     var appMenu = NSMenu()
     
-    let enabledButton = NSMenuItem(title: "Enable GlassCon", action: #selector(GlassPreferences.showConfigWindow), keyEquivalent: "")
-    enabledButton.state = NSOnState
-    appMenu.addItem(enabledButton)
+    enabledMenuButton.state = getActivationState()
+    enabledMenuButton.target = GlassPreferences.self
+    appMenu.addItem(enabledMenuButton)
     
     let preferencesButton = NSMenuItem(title: "Preferences", action: #selector(GlassPreferences.showConfigWindow), keyEquivalent: "")
     preferencesButton.target = GlassPreferences.self
@@ -74,6 +89,9 @@ MTRegisterContactFrameCallback(dev, processTouchpadData);
 MTDeviceStart(dev, 0);
 
 setupMenuBar()
+
+GlassPreferences.showConfigWindow()
+glassView.showGlass()
 
 NSApp.activate(ignoringOtherApps: true)
 NSApp.run()

@@ -47,6 +47,7 @@
 		9C522ED6200C771900E201B5 /* GlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassView.swift; sourceTree = "<group>"; };
 		9C522ED8200C777B00E201B5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		9C6A663A2036AB1B008B3321 /* GlassPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassPreferences.swift; sourceTree = "<group>"; };
+		9C6A66562036E69C008B3321 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/ApplicationServices.framework; sourceTree = DEVELOPER_DIR; };
 		9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +90,7 @@
 		9C46F59C2009BCEE00F9E926 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C6A66562036E69C008B3321 /* ApplicationServices.framework */,
 				9C34F9A4200EEC9300EA3EA7 /* IOKit.framework */,
 				9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */,
 				9C345B5A200B2AC100B54969 /* libSDL2main.a */,

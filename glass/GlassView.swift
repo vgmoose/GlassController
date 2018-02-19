@@ -1,6 +1,12 @@
 import Foundation
 import AppKit
 
+// detect if a circle is intersecting with a rectangle
+func intersects(_ cx: Double, _ cy: Double, _ left: Double, _ top: Double, _ right: Double, _ bottom: Double) -> Bool
+{
+    return cx >= left && cx <= right && cy >= top && cy <= bottom
+}
+
 public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutablePointer<Finger>>, _ nFingers: Int32, _ timestamp: Double, _ frame: Int32) -> Int32
 {
     let fingers = Array(UnsafeBufferPointer(start: data, count: Int(nFingers)))
@@ -11,13 +17,16 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
     // newly pressed value
     var pressed:Set<Int> = Set()
     
-    // if it's in the bottom right, send an S
+    // if it's the first region, send an S
     for finger in fingers
     {
-        if finger.normalized.pos.x > 0.5 && finger.normalized.pos.y > 0.5
+        for region in glassView.regions
         {
-            // add 0x01 to the newly "pressed" buttons
-            pressed.insert(0x01)
+            if intersects(Double(finger.normalized.pos.x), Double(finger.normalized.pos.y), region.x, region.y - region.height, region.x + region.width, region.y)
+            {
+                // add 0x01 to the newly "pressed" buttons
+                pressed.insert(0x01)
+            }
         }
     }
     
@@ -54,7 +63,7 @@ class GlassView : NSView
     var regions: [Region] = []
     var pressed:Set<Int> = Set()
     
-    var activated = false
+//    var activated = false
     
     func refresh()
     {
@@ -70,7 +79,7 @@ class GlassView : NSView
     
     func sendKey(_ keyCode: Int, _ enabled: Bool)
     {
-        if !self.activated
+        if !glassEnabled
         {
             return
         }
@@ -78,7 +87,6 @@ class GlassView : NSView
         let inputKeyCode = CGKeyCode(keyCode)
         let event = CGEvent(keyboardEventSource: nil, virtualKey: inputKeyCode, keyDown: enabled)
         event!.post(tap: .cghidEventTap)
-        print("posted S")
     }
     
     override func draw(_ rect: NSRect)
@@ -95,6 +103,20 @@ class GlassView : NSView
 
             let path = NSBezierPath(ovalIn: CGRect(origin: center, size: radius))
             NSColor.gray.setFill()
+            path.fill()
+        }
+        
+        for region in regions
+        {
+            var center = CGPoint()
+            let bounds = self.bounds
+            
+            let dimens = CGSize(width: bounds.width * CGFloat(region.width), height: bounds.height * CGFloat(region.height))
+            center.x = bounds.width * CGFloat(region.x)
+            center.y = bounds.height * CGFloat(region.y) - dimens.height
+            
+            let path = NSBezierPath(rect: CGRect(origin: center, size: dimens))
+            NSColor.red.withAlphaComponent(CGFloat(0.3)).setFill()
             path.fill()
         }
     }
