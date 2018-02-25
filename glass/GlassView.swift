@@ -25,7 +25,7 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
             if intersects(Double(finger.normalized.pos.x), Double(finger.normalized.pos.y), region.x, region.y - region.height, region.x + region.width, region.y)
             {
                 // add 0x01 to the newly "pressed" buttons
-                pressed.insert(0x01)
+                pressed.insert(region.code)
             }
         }
     }

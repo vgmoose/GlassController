@@ -20,9 +20,13 @@ class Region
     
     // the key to invoke
     var key: String = "s"
+	var code: Int = 1
     
-    init(_ x: Double, _ y: Double, _ width: Double, _ height: Double)
+	init(_ keycode: Int, _ x: Double, _ y: Double, _ width: Double, _ height: Double)
     {
+		self.key = "?"
+		self.code = keycode
+		
         self.x = x
         self.y = y
         self.width = width

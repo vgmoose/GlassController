@@ -22,7 +22,11 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         let WIDTH = CGFloat(550)
         let HEIGHT = CGFloat(350)
         
-        glassView.regions.append(Region(0.5, 0.5, 0.3, 0.3))
+        glassView.regions.append(Region(125, 0, 0.25, 1, 0.25))	// up
+		glassView.regions.append(Region(123, 0, 1, 0.25, 1))		// left
+		glassView.regions.append(Region(126, 0, 1, 1, 0.25))		// down
+		glassView.regions.append(Region(124, 0.75, 1, 0.25, 1))	// right
+
         
         let configRect = NSMakeRect(0, 0, WIDTH, HEIGHT)
         super.init(contentRect: configRect, styleMask: [.titled, .closable], backing: .buffered, defer: false)
