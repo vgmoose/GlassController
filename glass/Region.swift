@@ -30,4 +30,10 @@ class Region : Activator
     {
         return "Region(x: \(x), y: \(y), width: \(width), height: \(height))"
     }
+    
+    // detect if a circle is intersecting with a rectangle
+    func intersects(_ cx: Double, _ cy: Double, _ left: Double, _ top: Double, _ right: Double, _ bottom: Double) -> Bool
+    {
+        return cx >= left && cx <= right && cy >= top && cy <= bottom
+    }
 }

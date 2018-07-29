@@ -21,21 +21,39 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         let WIDTH = CGFloat(550)
         let HEIGHT = CGFloat(350)
         
-        var region = Region(0, 0.25, 1, 0.25)
-        var binding = KeyBinding(kVK_DownArrow)
-        glassView.actions.append(Action(binding, region))	// up
+//        var region = Region(0, 1, 1, 0.25)
+//        var binding = KeyBinding(kVK_UpArrow)
+//        glassView.actions.append(Action(binding, region))    // up
+//
+//        region = Region(0, 1, 0.25, 1)
+//        binding = KeyBinding(kVK_LeftArrow)
+//        glassView.actions.append(Action(binding, region))        // left
+//
+//        region = Region(0, 0.25, 1, 0.25)
+//        binding = KeyBinding(kVK_DownArrow)
+//        glassView.actions.append(Action(binding, region))        // down
+//
+//        region = Region(0.75, 1, 0.25, 1)
+//        binding = KeyBinding(kVK_RightArrow)
+//        glassView.actions.append(Action(binding, region))    // right
         
-        region = Region(0, 1, 0.25, 1)
-        binding = KeyBinding(kVK_LeftArrow)
-        glassView.actions.append(Action(binding, region))        // left
+        // mission control on four fingers down
+        var gesture = Gesture(Gesture.DOWN, 4)
+        var binding = KeyBinding(kVK_ANSI_M, [kVK_Control, kVK_Command, kVK_Option])
+        glassView.actions.append(Action(binding, gesture))
         
-        region = Region(0, 1, 1, 0.25)
-        binding = KeyBinding(kVK_UpArrow)
-		glassView.actions.append(Action(binding, region))		// down
+        gesture = Gesture(Gesture.UP, 4)
+        binding = KeyBinding(kVK_ANSI_A, [kVK_Control, kVK_Command, kVK_Option])
+        glassView.actions.append(Action(binding, gesture))
         
-        region = Region(0.75, 1, 0.25, 1)
-        binding = KeyBinding(kVK_RightArrow)
-        glassView.actions.append(Action(binding, region))    // right
+        gesture = Gesture(Gesture.DOWN, 5)
+        binding = KeyBinding(kVK_ANSI_W, [kVK_Command])
+        glassView.actions.append(Action(binding, gesture))
+        
+        gesture = Gesture(Gesture.UP, 5)
+        binding = KeyBinding(kVK_ANSI_T, [kVK_Control, kVK_Command, kVK_Option])
+        glassView.actions.append(Action(binding, gesture))
+        
 
         glassView.syncActions()
         

@@ -1,12 +1,6 @@
 import Foundation
 import AppKit
 
-// detect if a circle is intersecting with a rectangle
-func intersects(_ cx: Double, _ cy: Double, _ left: Double, _ top: Double, _ right: Double, _ bottom: Double) -> Bool
-{
-    return cx >= left && cx <= right && cy >= top && cy <= bottom
-}
-
 public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutablePointer<Finger>>, _ nFingers: Int32, _ timestamp: Double, _ frame: Int32) -> Int32
 {
     let fingers = Array(UnsafeBufferPointer(start: data, count: Int(nFingers)))
@@ -15,7 +9,7 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
     view.refresh()
     
     // newly pressed value
-    var pressed:Set<Int> = Set()
+    var pressed:Set<KeyBinding> = Set()
     
     var xAvg: Double = 0
     var yAvg: Double = 0
@@ -30,10 +24,9 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
         {
             let region = action.activator as! Region
             
-            if intersects(xpos, ypos, region.x, region.y - region.height, region.x + region.width, region.y)
+            if region.intersects(xpos, ypos, region.x, region.y - region.height, region.x + region.width, region.y)
             {
-                // add 0x01 to the newly "pressed" buttons
-                pressed.insert(action.keyBinding.code)
+                 pressed.insert(action.keyBinding)
             }
         }
         
@@ -47,7 +40,13 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
     // try to detect any gestures using the average of all the points
     for action in glassView.gestures
     {
+        let gesture = action.activator as! Gesture
         
+        // if the current conditions match the gesture
+        if gesture.matches(xAvg, yAvg, fingers.count)
+        {
+            pressed.insert(action.keyBinding)
+        }
     }
     
     // clone the newly pressed array to prepare for the subtractions below
@@ -85,12 +84,13 @@ class GlassView : NSView
     var gestures: [Action] = []
     var regions: [Action] = []
     
-    var pressed:Set<Int> = Set()
+    var pressed:Set<KeyBinding> = Set()
     
 //    var activated = false
     
     func refresh()
     {
+        // TODO: don't go in here at all unless the display is up
         DispatchQueue.main.sync {
             self.needsDisplay = true
         }
@@ -108,16 +108,15 @@ class GlassView : NSView
         showPreviewWindow()
     }
     
-    func sendKey(_ keyCode: Int, _ enabled: Bool)
+    func sendKey(_ keyBinding: KeyBinding, _ enabled: Bool)
     {
         if !glassEnabled
         {
             return
         }
         
-        let inputKeyCode = CGKeyCode(keyCode)
-        let event = CGEvent(keyboardEventSource: nil, virtualKey: inputKeyCode, keyDown: enabled)
-        event!.post(tap: .cghidEventTap)
+        // invoke this keybinding, as well as whatever modifiers it has
+        keyBinding.invoke(enabled)
     }
     
     override func draw(_ rect: NSRect)

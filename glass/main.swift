@@ -22,7 +22,7 @@ let glassView = view
 var enabledMenuButton = NSMenuItem(title: "Enable GlassCon", action: #selector(GlassPreferences.toggleGlass), keyEquivalent: "")
 
 
-var glassEnabled = false
+var glassEnabled = true
 
 func showPreviewWindow()
 {
