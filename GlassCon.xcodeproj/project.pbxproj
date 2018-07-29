@@ -15,6 +15,11 @@
 		9C522ED7200C771900E201B5 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED6200C771900E201B5 /* GlassView.swift */; };
 		9C522ED9200C777B00E201B5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED8200C777B00E201B5 /* main.swift */; };
 		9C6A663B2036AB1B008B3321 /* GlassPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A663A2036AB1B008B3321 /* GlassPreferences.swift */; };
+		9CA8B756210D5EB2004AA89E /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B755210D5EB2004AA89E /* Gesture.swift */; };
+		9CA8B758210D77D7004AA89E /* KeyBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B757210D77D7004AA89E /* KeyBinding.swift */; };
+		9CA8B75A210E22DD004AA89E /* Activator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B759210E22DD004AA89E /* Activator.swift */; };
+		9CA8B75C210E2326004AA89E /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B75B210E2326004AA89E /* Action.swift */; };
+		9CA8B75E210E25D2004AA89E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B75D210E25D2004AA89E /* Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +53,11 @@
 		9C522ED8200C777B00E201B5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		9C6A663A2036AB1B008B3321 /* GlassPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassPreferences.swift; sourceTree = "<group>"; };
 		9C6A66562036E69C008B3321 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/ApplicationServices.framework; sourceTree = DEVELOPER_DIR; };
+		9CA8B755210D5EB2004AA89E /* Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
+		9CA8B757210D77D7004AA89E /* KeyBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBinding.swift; sourceTree = "<group>"; };
+		9CA8B759210E22DD004AA89E /* Activator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activator.swift; sourceTree = "<group>"; };
+		9CA8B75B210E2326004AA89E /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		9CA8B75D210E25D2004AA89E /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +125,11 @@
 				9C34F9A7200EED0100EA3EA7 /* VirtualKeyboard.c */,
 				9C33D8C7202F0D33006968DE /* Region.swift */,
 				9C6A663A2036AB1B008B3321 /* GlassPreferences.swift */,
+				9CA8B755210D5EB2004AA89E /* Gesture.swift */,
+				9CA8B757210D77D7004AA89E /* KeyBinding.swift */,
+				9CA8B759210E22DD004AA89E /* Activator.swift */,
+				9CA8B75B210E2326004AA89E /* Action.swift */,
+				9CA8B75D210E25D2004AA89E /* Utils.m */,
 			);
 			path = glass;
 			sourceTree = "<group>";
@@ -185,10 +200,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C522ED9200C777B00E201B5 /* main.swift in Sources */,
+				9CA8B75C210E2326004AA89E /* Action.swift in Sources */,
 				9C34F9A8200EED0100EA3EA7 /* VirtualKeyboard.c in Sources */,
+				9CA8B75E210E25D2004AA89E /* Utils.m in Sources */,
 				9C522ED7200C771900E201B5 /* GlassView.swift in Sources */,
+				9CA8B758210D77D7004AA89E /* KeyBinding.swift in Sources */,
+				9CA8B756210D5EB2004AA89E /* Gesture.swift in Sources */,
 				9C6A663B2036AB1B008B3321 /* GlassPreferences.swift in Sources */,
 				9C33D8C8202F0D33006968DE /* Region.swift in Sources */,
+				9CA8B75A210E22DD004AA89E /* Activator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

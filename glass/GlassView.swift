@@ -17,17 +17,37 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
     // newly pressed value
     var pressed:Set<Int> = Set()
     
+    var xAvg: Double = 0
+    var yAvg: Double = 0
+    
     // if it's the first region, send an S
     for finger in fingers
     {
-        for region in glassView.regions
+        let xpos = Double(finger.normalized.pos.x)
+        let ypos = Double(finger.normalized.pos.y)
+        
+        for action in glassView.regions
         {
-            if intersects(Double(finger.normalized.pos.x), Double(finger.normalized.pos.y), region.x, region.y - region.height, region.x + region.width, region.y)
+            let region = action.activator as! Region
+            
+            if intersects(xpos, ypos, region.x, region.y - region.height, region.x + region.width, region.y)
             {
                 // add 0x01 to the newly "pressed" buttons
-                pressed.insert(region.code)
+                pressed.insert(action.keyBinding.code)
             }
         }
+        
+        xAvg += xpos
+        yAvg += ypos
+    }
+    
+    xAvg /= Double(fingers.count)
+    yAvg /= Double(fingers.count)
+    
+    // try to detect any gestures using the average of all the points
+    for action in glassView.gestures
+    {
+        
     }
     
     // clone the newly pressed array to prepare for the subtractions below
@@ -60,7 +80,11 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
 class GlassView : NSView
 {
     var fingers: [Finger] = []
-    var regions: [Region] = []
+    var actions: [Action] = []
+    
+    var gestures: [Action] = []
+    var regions: [Action] = []
+    
     var pressed:Set<Int> = Set()
     
 //    var activated = false
@@ -70,6 +94,13 @@ class GlassView : NSView
         DispatchQueue.main.sync {
             self.needsDisplay = true
         }
+    }
+    
+    func syncActions()
+    {
+        // fill gestures and regions from actions
+        gestures = actions.filter { $0.activator is Gesture }
+        regions = actions.filter { $0.activator is Region }
     }
     
     func showGlass()
@@ -106,18 +137,20 @@ class GlassView : NSView
             path.fill()
         }
         
-        for region in regions
-        {
-            var center = CGPoint()
-            let bounds = self.bounds
-            
-            let dimens = CGSize(width: bounds.width * CGFloat(region.width), height: bounds.height * CGFloat(region.height))
-            center.x = bounds.width * CGFloat(region.x)
-            center.y = bounds.height * CGFloat(region.y) - dimens.height
-            
-            let path = NSBezierPath(rect: CGRect(origin: center, size: dimens))
-            NSColor.red.withAlphaComponent(CGFloat(0.3)).setFill()
-            path.fill()
-        }
+//        for action in regions
+//        {
+//            let region = action.activator as! Region
+//            
+//            var center = CGPoint()
+//            let bounds = self.bounds
+//
+//            let dimens = CGSize(width: bounds.width * CGFloat(region.width), height: bounds.height * CGFloat(region.height))
+//            center.x = bounds.width * CGFloat(region.x)
+//            center.y = bounds.height * CGFloat(region.y) - dimens.height
+//
+//            let path = NSBezierPath(rect: CGRect(origin: center, size: dimens))
+//            NSColor.red.withAlphaComponent(CGFloat(0.3)).setFill()
+//            path.fill()
+//        }
     }
 }

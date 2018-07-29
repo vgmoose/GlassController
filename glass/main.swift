@@ -22,7 +22,7 @@ let glassView = view
 var enabledMenuButton = NSMenuItem(title: "Enable GlassCon", action: #selector(GlassPreferences.toggleGlass), keyEquivalent: "")
 
 
-var glassEnabled = true
+var glassEnabled = false
 
 func showPreviewWindow()
 {
@@ -79,7 +79,7 @@ func setupMenuBar()
     appMenuItem.submenu = appMenu
     
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-    statusItem.title = "🎮"
+    statusItem.title = "🔳"
     statusItem.menu = appMenu
 }
 
