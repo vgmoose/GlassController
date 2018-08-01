@@ -22,6 +22,7 @@
 		9CA8B75E210E25D2004AA89E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B75D210E25D2004AA89E /* Utils.m */; };
 		9CA8B76121114918004AA89E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B76021114918004AA89E /* Result.swift */; };
 		9CA8B76721116470004AA89E /* LaunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B76621116470004AA89E /* LaunchApp.swift */; };
+		9CA8B76A2111709B004AA89E /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B7692111709B004AA89E /* Context.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +63,7 @@
 		9CA8B75D210E25D2004AA89E /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		9CA8B76021114918004AA89E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		9CA8B76621116470004AA89E /* LaunchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchApp.swift; sourceTree = "<group>"; };
+		9CA8B7692111709B004AA89E /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +130,7 @@
 				9CA8B75B210E2326004AA89E /* Action.swift */,
 				9CA8B765211163C9004AA89E /* Activators */,
 				9CA8B764211163AD004AA89E /* Results */,
+				9CA8B7682111708E004AA89E /* Contexts */,
 				9CA8B75D210E25D2004AA89E /* Utils.m */,
 				9C522ED5200C771900E201B5 /* glass-Bridging-Header.h */,
 				9C34F9A6200EED0100EA3EA7 /* VirtualKeyboard.h */,
@@ -154,6 +157,14 @@
 				9CA8B755210D5EB2004AA89E /* Gesture.swift */,
 			);
 			path = Activators;
+			sourceTree = "<group>";
+		};
+		9CA8B7682111708E004AA89E /* Contexts */ = {
+			isa = PBXGroup;
+			children = (
+				9CA8B7692111709B004AA89E /* Context.swift */,
+			);
+			path = Contexts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +242,7 @@
 				9C6A663B2036AB1B008B3321 /* GlassPreferences.swift in Sources */,
 				9C33D8C8202F0D33006968DE /* Region.swift in Sources */,
 				9CA8B75A210E22DD004AA89E /* Activator.swift in Sources */,
+				9CA8B76A2111709B004AA89E /* Context.swift in Sources */,
 				9CA8B76721116470004AA89E /* LaunchApp.swift in Sources */,
 				9CA8B76121114918004AA89E /* Result.swift in Sources */,
 			);

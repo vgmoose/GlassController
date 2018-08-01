@@ -17,8 +17,14 @@ class LaunchApp : Result
         super.hashValue = path.hashValue
     }
     
+    override func toString() -> String {
+        return "\(self.key.split(separator: "/").last ?? "?")"
+    }
+    
     override func invoke(_ enabled: Bool)
     {
-        NSWorkspace.shared().launchApplication(key);
+        if context?.valid() ?? true {
+            NSWorkspace.shared().launchApplication(key);
+        }
     }
 }

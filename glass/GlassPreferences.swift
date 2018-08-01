@@ -18,7 +18,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
     
     init()
     {
-        let WIDTH = CGFloat(550)
+        let WIDTH = CGFloat(750)
         let HEIGHT = CGFloat(350)
         
 //        var region = Region(0, 1, 1, 0.25)
@@ -54,7 +54,15 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         binding = LaunchApp("/Applications/Utilities/Terminal.app");
         glassView.actions.append(Action(binding, gesture))
         
+        gesture = Gesture(Gesture.LEFT, 2)
+        binding = KeyBinding(kVK_UpArrow)
+        binding.context = Context("com.apple.terminal")
+        glassView.actions.append(Action(binding, gesture))
         
+        gesture = Gesture(Gesture.RIGHT, 2)
+        binding = KeyBinding(kVK_DownArrow)
+        binding.context = Context("com.apple.terminal")
+        glassView.actions.append(Action(binding, gesture))
 
         glassView.syncActions()
         
@@ -103,8 +111,9 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         // the current regions on the touchpad and action mappings
         let tableContainer = NSScrollView(frame:NSMakeRect(0, 0, WIDTH, HEIGHT-100))
         let tableView = NSTableView(frame:NSMakeRect(0, 0, WIDTH-16, HEIGHT-100))
-        createTableCol(tableView, "Key Binding")
+        createTableCol(tableView, "Result")
         createTableCol(tableView, "Action")
+        createTableCol(tableView, "Context")
         tableContainer.frame.origin = CGPoint(x: 0, y: 100)
         tableView.delegate = self
         tableView.dataSource = self
@@ -113,6 +122,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         tableContainer.hasVerticalScroller = true
         
         tableView.tableColumns[1].width = 400
+        tableView.tableColumns[2].width = 150
         
         inner.addSubview(tableContainer)
 

@@ -22,8 +22,9 @@ class Action
     func getValue(_ value: String) -> String
     {
         // given a string identifier (from the table col) return the appropriate property
-        if (value == "Key Binding") { return self.result.toString() }
+        if (value == "Result") { return self.result.toString() }
         if (value == "Action") { return self.activator.toString() }
+        if (value == "Context") { return self.result.context?.bundle ?? "Any" }
         return "?"
     }
 }

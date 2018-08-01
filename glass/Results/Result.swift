@@ -20,6 +20,8 @@ class Result : Hashable
     
     var opts: [Int] = []
     
+    var context: Context?
+    
     func invoke(_ enabled: Bool)
     {
         // do nothing (override me)

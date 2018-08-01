@@ -32,7 +32,7 @@ class KeyBinding : Result
         if (code == kVK_CapsLock) { return "⇪" }
         if (code == kVK_Function) { return "Fn" }
         
-        return String(keyCodeToString(CGKeyCode(code)) ?? "?")
+        return String(keyCodeToString(CGKeyCode(code)) ?? "?").uppercased()
     }
     
     override func toString() -> String
@@ -54,6 +54,10 @@ class KeyBinding : Result
     
     override func invoke(_ enabled: Bool)
     {
+        if context?.valid() ?? false {
+            return
+        }
+        
         let inputKeyCode = CGKeyCode(self.code)
         let event = CGEvent(keyboardEventSource: nil, virtualKey: inputKeyCode, keyDown: enabled)
         var modifiers: CGEventFlags = CGEventFlags(rawValue: 0)

@@ -58,8 +58,8 @@ class Gesture : Activator
 //        if direction == Gesture.TAP { return abs(self.syPos + self.sxPos) - (syPos + sxPos); }
         if direction == Gesture.UP && ypos > self.syPos { return ypos - self.syPos }
         if direction == Gesture.DOWN && ypos < self.syPos { return self.syPos - ypos }
-        if direction == Gesture.LEFT && xpos > self.sxPos { return xpos - self.sxPos }
-        if direction == Gesture.RIGHT && xpos < self.sxPos { return self.sxPos - xpos }
+        if direction == Gesture.RIGHT && xpos > self.sxPos { return xpos - self.sxPos }
+        if direction == Gesture.LEFT && xpos < self.sxPos { return self.sxPos - xpos }
         
         return -1
     }
