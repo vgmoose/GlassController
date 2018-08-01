@@ -39,7 +39,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         
         // mission control on four fingers down
         var gesture = Gesture(Gesture.DOWN, 4)
-        var binding = KeyBinding(kVK_ANSI_M, [kVK_Control, kVK_Command, kVK_Option])
+        var binding: Result = KeyBinding(kVK_ANSI_M, [kVK_Control, kVK_Command, kVK_Option])
         glassView.actions.append(Action(binding, gesture))
         
         gesture = Gesture(Gesture.UP, 4)
@@ -51,8 +51,9 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         glassView.actions.append(Action(binding, gesture))
         
         gesture = Gesture(Gesture.UP, 5)
-        binding = KeyBinding(kVK_ANSI_T, [kVK_Control, kVK_Command, kVK_Option])
+        binding = LaunchApp("/Applications/Utilities/Terminal.app");
         glassView.actions.append(Action(binding, gesture))
+        
         
 
         glassView.syncActions()

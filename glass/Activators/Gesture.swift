@@ -55,6 +55,7 @@ class Gesture : Activator
     // relative to the starting xpos, ypos
     func rightDirection(_ xpos: Double, _ ypos: Double) -> Double
     {
+//        if direction == Gesture.TAP { return abs(self.syPos + self.sxPos) - (syPos + sxPos); }
         if direction == Gesture.UP && ypos > self.syPos { return ypos - self.syPos }
         if direction == Gesture.DOWN && ypos < self.syPos { return self.syPos - ypos }
         if direction == Gesture.LEFT && xpos > self.sxPos { return xpos - self.sxPos }

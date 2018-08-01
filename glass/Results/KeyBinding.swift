@@ -6,26 +6,16 @@
 
 import Foundation
 
-class KeyBinding : Hashable
+class KeyBinding : Result
 {
-    var hashValue: Int
-    
-    static func ==(lhs: KeyBinding, rhs: KeyBinding) -> Bool {
-        return lhs.code == rhs.code && lhs.opts == rhs.opts
-    }
-    
-    var key: String
-    var code: Int
-    
-    var opts: [Int]
-    
     init(_ code: Int, _ opts: [Int] = [])
     {
-        self.code = code
-        self.opts = opts
+        super.init()
+        super.code = code
+        super.opts = opts
         
-        self.key = KeyBinding.calculateForCode(code)
-        self.hashValue = self.code * self.opts.reduce(0, { $0 + $1 })
+        super.key = KeyBinding.calculateForCode(code)
+        super.hashValue = self.code * self.opts.reduce(0, { $0 + $1 })
     }
     
     static func calculateForCode(_ code: Int) -> String
@@ -45,7 +35,7 @@ class KeyBinding : Hashable
         return String(keyCodeToString(CGKeyCode(code)) ?? "?")
     }
     
-    func toString() -> String
+    override func toString() -> String
     {
         let held = self.opts.map { KeyBinding.calculateForCode($0) }.reduce("", { "\($0)\($1)" })
         
@@ -62,7 +52,7 @@ class KeyBinding : Hashable
         return CGEventFlags(rawValue: 0)
     }
     
-    func invoke(_ enabled: Bool)
+    override func invoke(_ enabled: Bool)
     {
         let inputKeyCode = CGKeyCode(self.code)
         let event = CGEvent(keyboardEventSource: nil, virtualKey: inputKeyCode, keyDown: enabled)

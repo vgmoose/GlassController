@@ -9,7 +9,7 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
     view.refresh()
     
     // newly pressed value
-    var pressed:Set<KeyBinding> = Set()
+    var pressed:Set<Result> = Set()
     
     var xAvg: Double = 0
     var yAvg: Double = 0
@@ -26,7 +26,7 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
             
             if region.intersects(xpos, ypos, region.x, region.y - region.height, region.x + region.width, region.y)
             {
-                 pressed.insert(action.keyBinding)
+                 pressed.insert(action.result)
             }
         }
         
@@ -45,7 +45,7 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
         // if the current conditions match the gesture
         if gesture.matches(xAvg, yAvg, fingers.count)
         {
-            pressed.insert(action.keyBinding)
+            pressed.insert(action.result)
         }
     }
     
@@ -84,7 +84,7 @@ class GlassView : NSView
     var gestures: [Action] = []
     var regions: [Action] = []
     
-    var pressed:Set<KeyBinding> = Set()
+    var pressed:Set<Result> = Set()
     
 //    var activated = false
     
@@ -108,7 +108,7 @@ class GlassView : NSView
         showPreviewWindow()
     }
     
-    func sendKey(_ keyBinding: KeyBinding, _ enabled: Bool)
+    func sendKey(_ result: Result, _ enabled: Bool)
     {
         if !glassEnabled
         {
@@ -116,7 +116,7 @@ class GlassView : NSView
         }
         
         // invoke this keybinding, as well as whatever modifiers it has
-        keyBinding.invoke(enabled)
+        result.invoke(enabled)
     }
     
     override func draw(_ rect: NSRect)

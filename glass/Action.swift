@@ -10,19 +10,19 @@ import Foundation
 
 class Action
 {
-    let keyBinding: KeyBinding
+    let result: Result
     let activator: Activator
     
-    init(_ keyBinding: KeyBinding, _ activator: Activator)
+    init(_ result: Result, _ activator: Activator)
     {        
-        self.keyBinding = keyBinding
+        self.result = result
         self.activator = activator
     }
     
     func getValue(_ value: String) -> String
     {
         // given a string identifier (from the table col) return the appropriate property
-        if (value == "Key Binding") { return self.keyBinding.toString() }
+        if (value == "Key Binding") { return self.result.toString() }
         if (value == "Action") { return self.activator.toString() }
         return "?"
     }

@@ -20,6 +20,8 @@
 		9CA8B75A210E22DD004AA89E /* Activator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B759210E22DD004AA89E /* Activator.swift */; };
 		9CA8B75C210E2326004AA89E /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B75B210E2326004AA89E /* Action.swift */; };
 		9CA8B75E210E25D2004AA89E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B75D210E25D2004AA89E /* Utils.m */; };
+		9CA8B76121114918004AA89E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B76021114918004AA89E /* Result.swift */; };
+		9CA8B76721116470004AA89E /* LaunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B76621116470004AA89E /* LaunchApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +60,8 @@
 		9CA8B759210E22DD004AA89E /* Activator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activator.swift; sourceTree = "<group>"; };
 		9CA8B75B210E2326004AA89E /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		9CA8B75D210E25D2004AA89E /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		9CA8B76021114918004AA89E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		9CA8B76621116470004AA89E /* LaunchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchApp.swift; sourceTree = "<group>"; };
 		9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,21 +121,39 @@
 		9C522ECA200C6D8900E201B5 /* glass */ = {
 			isa = PBXGroup;
 			children = (
-				9C46F5982009B81800F9E926 /* MultitouchSupport.h */,
 				9C522ED8200C777B00E201B5 /* main.swift */,
+				9C46F5982009B81800F9E926 /* MultitouchSupport.h */,
 				9C522ED6200C771900E201B5 /* GlassView.swift */,
+				9C6A663A2036AB1B008B3321 /* GlassPreferences.swift */,
+				9CA8B75B210E2326004AA89E /* Action.swift */,
+				9CA8B765211163C9004AA89E /* Activators */,
+				9CA8B764211163AD004AA89E /* Results */,
+				9CA8B75D210E25D2004AA89E /* Utils.m */,
 				9C522ED5200C771900E201B5 /* glass-Bridging-Header.h */,
 				9C34F9A6200EED0100EA3EA7 /* VirtualKeyboard.h */,
 				9C34F9A7200EED0100EA3EA7 /* VirtualKeyboard.c */,
-				9C33D8C7202F0D33006968DE /* Region.swift */,
-				9C6A663A2036AB1B008B3321 /* GlassPreferences.swift */,
-				9CA8B755210D5EB2004AA89E /* Gesture.swift */,
-				9CA8B757210D77D7004AA89E /* KeyBinding.swift */,
-				9CA8B759210E22DD004AA89E /* Activator.swift */,
-				9CA8B75B210E2326004AA89E /* Action.swift */,
-				9CA8B75D210E25D2004AA89E /* Utils.m */,
 			);
 			path = glass;
+			sourceTree = "<group>";
+		};
+		9CA8B764211163AD004AA89E /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				9CA8B76021114918004AA89E /* Result.swift */,
+				9CA8B757210D77D7004AA89E /* KeyBinding.swift */,
+				9CA8B76621116470004AA89E /* LaunchApp.swift */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
+		9CA8B765211163C9004AA89E /* Activators */ = {
+			isa = PBXGroup;
+			children = (
+				9CA8B759210E22DD004AA89E /* Activator.swift */,
+				9C33D8C7202F0D33006968DE /* Region.swift */,
+				9CA8B755210D5EB2004AA89E /* Gesture.swift */,
+			);
+			path = Activators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +231,8 @@
 				9C6A663B2036AB1B008B3321 /* GlassPreferences.swift in Sources */,
 				9C33D8C8202F0D33006968DE /* Region.swift in Sources */,
 				9CA8B75A210E22DD004AA89E /* Activator.swift in Sources */,
+				9CA8B76721116470004AA89E /* LaunchApp.swift in Sources */,
+				9CA8B76121114918004AA89E /* Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
