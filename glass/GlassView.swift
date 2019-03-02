@@ -25,7 +25,8 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
             let region = action.activator as! Region
             
             if region.intersects(xpos, ypos, region.x, region.y - region.height, region.x + region.width, region.y)
-            {
+			&& action.context.valid()
+			{
                  pressed.insert(action.result)
             }
         }
@@ -43,7 +44,7 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
         let gesture = action.activator as! Gesture
         
         // if the current conditions match the gesture
-        if gesture.matches(xAvg, yAvg, fingers.count)
+        if gesture.matches(xAvg, yAvg, fingers.count) && action.context.valid()
         {
             pressed.insert(action.result)
         }
@@ -110,10 +111,7 @@ class GlassView : NSView
     
     func sendKey(_ result: Result, _ enabled: Bool)
     {
-        if !glassEnabled
-        {
-            return
-        }
+        if !glassEnabled { return }
         
         // invoke this keybinding, as well as whatever modifiers it has
         result.invoke(enabled)
@@ -136,20 +134,20 @@ class GlassView : NSView
             path.fill()
         }
         
-//        for action in regions
-//        {
-//            let region = action.activator as! Region
-//            
-//            var center = CGPoint()
-//            let bounds = self.bounds
-//
-//            let dimens = CGSize(width: bounds.width * CGFloat(region.width), height: bounds.height * CGFloat(region.height))
-//            center.x = bounds.width * CGFloat(region.x)
-//            center.y = bounds.height * CGFloat(region.y) - dimens.height
-//
-//            let path = NSBezierPath(rect: CGRect(origin: center, size: dimens))
-//            NSColor.red.withAlphaComponent(CGFloat(0.3)).setFill()
-//            path.fill()
-//        }
+        for action in regions
+        {
+            let region = action.activator as! Region
+			
+            var center = CGPoint()
+            let bounds = self.bounds
+
+            let dimens = CGSize(width: bounds.width * CGFloat(region.width), height: bounds.height * CGFloat(region.height))
+            center.x = bounds.width * CGFloat(region.x)
+            center.y = bounds.height * CGFloat(region.y) - dimens.height
+
+            let path = NSBezierPath(rect: CGRect(origin: center, size: dimens))
+            NSColor.red.withAlphaComponent(CGFloat(0.3)).setFill()
+            path.fill()
+        }
     }
 }

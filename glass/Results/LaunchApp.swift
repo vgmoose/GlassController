@@ -23,8 +23,6 @@ class LaunchApp : Result
     
     override func invoke(_ enabled: Bool)
     {
-        if context?.valid() ?? true {
-            NSWorkspace.shared().launchApplication(key);
-        }
+		NSWorkspace.shared().launchApplication(key);
     }
 }

@@ -2,7 +2,6 @@
 //  Result.swift
 //  GlassCon
 //
-//  Created by Ricky Ayoub on 7/31/18.
 //
 
 import Foundation
@@ -19,9 +18,7 @@ class Result : Hashable
     var code: Int = 0
     
     var opts: [Int] = []
-    
-    var context: Context?
-    
+        
     func invoke(_ enabled: Bool)
     {
         // do nothing (override me)

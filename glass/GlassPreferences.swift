@@ -22,7 +22,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         let HEIGHT = CGFloat(350)
         
 //        var region = Region(0, 1, 1, 0.25)
-//        var binding = KeyBinding(kVK_UpArrow)
+		var binding: Result = KeyBinding(kVK_UpArrow)
 //        glassView.actions.append(Action(binding, region))    // up
 //
 //        region = Region(0, 1, 0.25, 1)
@@ -35,34 +35,35 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 //
 //        region = Region(0.75, 1, 0.25, 1)
 //        binding = KeyBinding(kVK_RightArrow)
-//        glassView.actions.append(Action(binding, region))    // right
-        
+//        glassView.actions.append(Action(binding
+//            , region))    // right
+		
         // mission control on four fingers down
         var gesture = Gesture(Gesture.DOWN, 4)
-        var binding: Result = KeyBinding(kVK_ANSI_M, [kVK_Control, kVK_Command, kVK_Option])
+        binding = KeyBinding(kVK_ANSI_M, [kVK_Control, kVK_Command, kVK_Option])
         glassView.actions.append(Action(binding, gesture))
-        
+
         gesture = Gesture(Gesture.UP, 4)
         binding = KeyBinding(kVK_ANSI_A, [kVK_Control, kVK_Command, kVK_Option])
         glassView.actions.append(Action(binding, gesture))
-        
+
         gesture = Gesture(Gesture.DOWN, 5)
         binding = KeyBinding(kVK_ANSI_W, [kVK_Command])
         glassView.actions.append(Action(binding, gesture))
-        
+
         gesture = Gesture(Gesture.UP, 5)
         binding = LaunchApp("/Applications/Utilities/Terminal.app");
         glassView.actions.append(Action(binding, gesture))
-        
+
         gesture = Gesture(Gesture.LEFT, 2)
         binding = KeyBinding(kVK_UpArrow)
-        binding.context = Context("com.apple.terminal")
-        glassView.actions.append(Action(binding, gesture))
-        
+        var context = Context("com.apple.Terminal")
+        glassView.actions.append(Action(binding, gesture, context))
+
         gesture = Gesture(Gesture.RIGHT, 2)
         binding = KeyBinding(kVK_DownArrow)
-        binding.context = Context("com.apple.terminal")
-        glassView.actions.append(Action(binding, gesture))
+        context = Context("com.apple.Terminal")
+        glassView.actions.append(Action(binding, gesture, context))
 
         glassView.syncActions()
         
