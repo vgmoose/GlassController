@@ -17,14 +17,14 @@ class Gesture : Activator
     
     // the nunmber of fingers that this gesture requires to activate
     let count: Int
-    
-//    var activated_time: Date? = nil
+	
+	var cur_time = NSDate()
     
     // the bounds for how long this gesture should last
     // nil == no bound in that direction (relative to activated_time)
 //    var min_time: Date? = nil
-//    var max_time: Date? = nil
-    
+    var max_time: Date? = nil
+	
     let minDistance = 0.15
     var matching = false
     
@@ -46,10 +46,25 @@ class Gesture : Activator
     
     override func toString() -> String
     {
-        if (Gesture.TAP == direction) { return "Tap(fingers: \(count)" }
+        if (Gesture.TAP == direction) { return "Tap(fingers: \(count))" }
         
         return "Swipe(fingers: \(count), direction: \(humanDirection))"
     }
+	
+	override func serialize() -> [String: Any]?
+	{
+		if (direction == Gesture.TAP) {
+			return [
+				"type": "Tap",
+				"fingers": count
+			]
+		}
+		return [
+			"type": "Swipe",
+			"fingers": count,
+			"direction": direction
+		]
+	}
     
     // returns true if it keeps going in the right direction
     // relative to the starting xpos, ypos

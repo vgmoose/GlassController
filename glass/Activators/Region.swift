@@ -30,6 +30,17 @@ class Region : Activator
     {
         return "Region(x: \(x), y: \(y), width: \(width), height: \(height))"
     }
+	
+	override func serialize() -> [String: Any]?
+	{
+		return [
+			"type": "Region",
+			"x": x,
+			"y": y,
+			"width": width,
+			"height": height
+		]
+	}
     
     // detect if a circle is intersecting with a rectangle
     func intersects(_ cx: Double, _ cy: Double, _ left: Double, _ top: Double, _ right: Double, _ bottom: Double) -> Bool

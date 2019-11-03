@@ -67,4 +67,13 @@ class KeyBinding : Result
         event!.post(tap: .cghidEventTap)
         
     }
+	
+	override func serialize() -> [String: Any]?
+	{
+		return [
+			"type": "KeyBinding",
+			"keycode": code,
+			"modifiers": opts
+		]
+	}
 }

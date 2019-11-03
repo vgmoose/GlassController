@@ -9,6 +9,13 @@ import AppKit
 
 class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 {
+	static var activeProfileSlot = UserDefaults.standard.integer(forKey: "activeProfile")
+	static var slotNames = ["Profile 1", "Profile 2", "Profile 3"]
+	
+	var tableView: NSTableView
+	
+	static var me: GlassPreferences? = nil
+	
     func createTableCol(_ tableView: NSTableView, _ text: String)
     {
         let col = NSTableColumn(identifier: text)
@@ -21,55 +28,14 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         let WIDTH = CGFloat(750)
         let HEIGHT = CGFloat(350)
         
-//        var region = Region(0, 1, 1, 0.25)
-		var binding: Result = KeyBinding(kVK_UpArrow)
-//        glassView.actions.append(Action(binding, region))    // up
-//
-//        region = Region(0, 1, 0.25, 1)
-//        binding = KeyBinding(kVK_LeftArrow)
-//        glassView.actions.append(Action(binding, region))        // left
-//
-//        region = Region(0, 0.25, 1, 0.25)
-//        binding = KeyBinding(kVK_DownArrow)
-//        glassView.actions.append(Action(binding, region))        // down
-//
-//        region = Region(0.75, 1, 0.25, 1)
-//        binding = KeyBinding(kVK_RightArrow)
-//        glassView.actions.append(Action(binding
-//            , region))    // right
-		
-        // mission control on four fingers down
-        var gesture = Gesture(Gesture.DOWN, 4)
-        binding = KeyBinding(kVK_ANSI_M, [kVK_Control, kVK_Command, kVK_Option])
-        glassView.actions.append(Action(binding, gesture))
-
-        gesture = Gesture(Gesture.UP, 4)
-        binding = KeyBinding(kVK_ANSI_A, [kVK_Control, kVK_Command, kVK_Option])
-        glassView.actions.append(Action(binding, gesture))
-
-        gesture = Gesture(Gesture.DOWN, 5)
-        binding = KeyBinding(kVK_ANSI_W, [kVK_Command])
-        glassView.actions.append(Action(binding, gesture))
-
-        gesture = Gesture(Gesture.UP, 5)
-        binding = LaunchApp("/Applications/Utilities/Terminal.app");
-        glassView.actions.append(Action(binding, gesture))
-
-        gesture = Gesture(Gesture.LEFT, 2)
-        binding = KeyBinding(kVK_UpArrow)
-        var context = Context("com.apple.Terminal")
-        glassView.actions.append(Action(binding, gesture, context))
-
-        gesture = Gesture(Gesture.RIGHT, 2)
-        binding = KeyBinding(kVK_DownArrow)
-        context = Context("com.apple.Terminal")
-        glassView.actions.append(Action(binding, gesture, context))
-
-        glassView.syncActions()
-        
         let configRect = NSMakeRect(0, 0, WIDTH, HEIGHT)
+		self.tableView = NSTableView(frame:NSMakeRect(0, 0, WIDTH-16, HEIGHT-100))
         super.init(contentRect: configRect, styleMask: [.titled, .closable], backing: .buffered, defer: false)
-        
+		
+		// load from the active slot!
+		self.loadPrefs()
+		glassView.syncActions()
+		
         let window = self
         
         let inner = NSView(frame: configRect)
@@ -86,20 +52,31 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         button.frame = NSMakeRect(0, 0, 250, 20)
         button.title = "Show Touchpad Preview"
         inner.addSubview(button)
-        
-        // checkbox to totally enable/disable action listeners
-        let checkbox = NSButton()
-        checkbox.setButtonType(NSSwitchButton)
-        checkbox.title = "Activate Glass Controller"
-        checkbox.frame = NSMakeRect(0, 0, 250, 20)
-        checkbox.frame.origin = CGPoint(x: 0, y: 50)
-        checkbox.state = getActivationState()
-        inner.addSubview(checkbox)
+		
+		let export = NSButton()
+		export.setButtonType(.momentaryLight)
+		export.bezelStyle = .rounded
+		export.target = self
+		export.action = #selector(self.exportProfile)
+		export.frame = NSMakeRect(0, 0, 75, 20)
+		export.frame.origin = CGPoint(x: 5, y: 50)
+		export.title = "Export"
+		inner.addSubview(export)
+		
+		let importB = NSButton()
+		importB.title = "Import"
+		importB.bezelStyle = .rounded
+		importB.setButtonType(.momentaryLight)
+		importB.target = self
+		importB.action = #selector(self.importProfile)
+		importB.frame = NSMakeRect(0, 0, 75, 20)
+		importB.frame.origin = CGPoint(x: 80, y: 50)
+		inner.addSubview(importB)
         
         // the + and - buttons for actions
         let controls = NSSegmentedControl()
-        controls.frame = NSMakeRect(0, 0, 100, 20)
-        controls.frame.origin = CGPoint(x: 0, y: 80)
+        controls.frame = NSMakeRect(0, 0, 100, 30)
+        controls.frame.origin = CGPoint(x: 5, y: 70)
         controls.segmentCount = 2
         controls.setLabel("+", forSegment: 0)
         controls.setLabel("-", forSegment: 1)
@@ -111,9 +88,8 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         
         // the current regions on the touchpad and action mappings
         let tableContainer = NSScrollView(frame:NSMakeRect(0, 0, WIDTH, HEIGHT-100))
-        let tableView = NSTableView(frame:NSMakeRect(0, 0, WIDTH-16, HEIGHT-100))
         createTableCol(tableView, "Result")
-        createTableCol(tableView, "Action")
+        createTableCol(tableView, "Activator")
         createTableCol(tableView, "Context")
         tableContainer.frame.origin = CGPoint(x: 0, y: 100)
         tableView.delegate = self
@@ -155,5 +131,138 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         window.cascadeTopLeft(from: NSMakePoint(20, 20))
         window.title = "GlassCon Preferences"
         window.makeKeyAndOrderFront(nil)
+		me = window
     }
+	
+	static func switchProfileCommon(_ slot: Int)
+	{
+		activeProfileSlot = slot
+		loadProfileSlots()
+		
+		me!.loadPrefs()
+		UserDefaults.standard.set(slot, forKey: "activeProfile")
+	}
+	
+	// three slots to manage profiles in
+	static func switchProfile1() { GlassPreferences.switchProfileCommon(0) }
+	static func switchProfile2() { GlassPreferences.switchProfileCommon(1) }
+	static func switchProfile3() { GlassPreferences.switchProfileCommon(2) }
+	
+	static func loadProfileSlots() {
+		
+		for x in 0..<3 {
+			profileItems[x].state = activeProfileSlot == x ? 1 : 0
+			profileItems[x].title = UserDefaults.standard.string(forKey: "prefs\(x)_name") ?? "Profile \(x+1)"
+			slotNames[x] = profileItems[x].title
+		}
+	}
+	
+	func setNameForActiveSlot(_ name: String) {
+		let x = GlassPreferences.activeProfileSlot
+		GlassPreferences.slotNames[x] = name
+		UserDefaults.standard.set(name, forKey: "prefs\(x)_name")
+		GlassPreferences.loadProfileSlots()
+	}
+
+	// from a json string, update our actions
+	func applyPrefs(_ prefString: String)
+	{
+		let data = Data(prefString.utf8)
+		do {
+			let myJson = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+			
+			setNameForActiveSlot(myJson["name"] as? String ?? "Custom Profile")
+			
+			if let actions = myJson["actions"] as? Array<[AnyHashable:AnyHashable]> {
+				glassView.actions = []
+				
+				for cur:[AnyHashable:AnyHashable] in actions {
+					if let curAction = cur as? [String:AnyHashable] {
+						let newAction = Action(Result(), Activator())
+						
+						if let activator = curAction["activator"] as? [String:AnyHashable] {
+							newAction.activator = Activator.deserialize(activator)
+						}
+						if let result = curAction["result"] as? [String:AnyHashable] {
+							newAction.result = Result.deserialize(result)
+						}
+						if let context = curAction["context"] as? [String:AnyHashable] {
+							newAction.context = Context.deserialize(context)
+						}
+						glassView.actions.append(newAction)
+					}
+				}
+				
+				glassView.syncActions()
+				self.tableView.reloadData()
+			}
+		} catch let error {
+			Swift.print(error)
+		}
+	}
+	
+	func savePrefs()
+	{
+		let title = profileItems[GlassPreferences.activeProfileSlot].title
+		UserDefaults.standard.set(glassView.toJSON(title), forKey: "prefs\(GlassPreferences.activeProfileSlot)_data")
+	}
+	
+	func loadPrefs()
+	{
+		let defaultPrefs = "{\"actions\": []}"
+
+		let res = UserDefaults.standard.string(forKey: "prefs\(GlassPreferences.activeProfileSlot)_data")
+		
+		applyPrefs(res ?? defaultPrefs)
+	}
+	
+	func exportProfile()
+	{
+		let out = glassView.toJSON(profileItems[GlassPreferences.activeProfileSlot].title)
+
+		let openPanel = NSSavePanel();
+		openPanel.title = "Export profile data"
+		openPanel.isExtensionHidden = false
+		
+		var dateString: String {
+			let formatter = DateFormatter()
+			formatter.dateFormat = "yyyy-MM-dd"
+			
+			return formatter.string(from: Date())
+		}
+		
+		openPanel.showsResizeIndicator = true
+		openPanel.allowedFileTypes = ["json"]
+		openPanel.nameFieldStringValue = "GlassConPrefs_\(dateString)"
+		
+		openPanel.begin { (result) -> Void in
+			if(result == NSFileHandlingPanelOKButton){
+				let path = openPanel.url!
+				do {
+					try out.write(to: path, atomically: false, encoding: .utf8)
+				} catch {
+					Swift.print("Some error while writing file")
+				}
+			}
+		}
+	}
+	
+	func importProfile()
+	{
+		let openPanel = NSOpenPanel();
+		openPanel.title = "Import profile data"
+		openPanel.showsResizeIndicator = true;
+		
+		openPanel.begin { (result) -> Void in
+			if(result == NSFileHandlingPanelOKButton){
+				let path = openPanel.url!.path
+				do {
+					try self.applyPrefs(String(contentsOfFile: path))
+					self.savePrefs()	// imports over the current active slot
+				} catch {
+					Swift.print("Couldn't apply profile..")
+				}
+			}
+		}
+	}
 }

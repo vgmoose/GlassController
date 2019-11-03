@@ -12,9 +12,9 @@ import AppKit
 // the main difference between an Activator and a Context is an Activactor relies on some touchpad specific data
 class Context
 {
-    var bundle = "?";
+	var bundle: String
     
-    init(_ bundle: String)
+    init(_ bundle: String = "*")
     {
         self.bundle = bundle
     }
@@ -26,8 +26,7 @@ class Context
 			return true;
 		}
 		
-		var curApp = NSWorkspace.shared().frontmostApplication?.bundleIdentifier ?? ""
-		print(curApp)
+		let curApp = NSWorkspace.shared().frontmostApplication?.bundleIdentifier ?? ""
 		return curApp == bundle
     }
 	
@@ -38,5 +37,31 @@ class Context
 		}
 		
 		return bundle
+	}
+	
+	func serialize() -> [String: Any]?
+	{
+		if bundle == "*" {
+			return nil
+		}
+		
+		return [
+			"type": "AppBundle",
+			"bundle": bundle
+		]
+	}
+	
+	static func deserialize(_ data: [String: AnyHashable]) -> Context
+	{
+		// check the type
+		if let type = data["type"] as? String {
+			if type == "AppBundle" {
+				if let bundle = data["bundle"] as? String {
+					return Context(bundle)
+				}
+			}
+		}
+		
+		return Context()
 	}
 }

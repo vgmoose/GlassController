@@ -28,5 +28,32 @@ class Result : Hashable
     {
         return "?"
     }
+	
+	func serialize() -> [String: Any]?
+	{
+		return nil
+	}
+	
+	static func deserialize(_ data: [String: AnyHashable]) -> Result
+	{
+		// check the type
+		if let type = data["type"] as? String {
+			if type == "KeyBinding" {
+				if let keycode = data["keycode"] as? Int, let modifiers = data["modifiers"] as? [Int] {
+					return KeyBinding(keycode, modifiers)
+				}
+			} else if type == "LaunchApp" {
+				if let path = data["path"] as? String {
+					return LaunchApp(path)
+				}
+			} else if type == "MouseClick" {
+				if let button = data["button"] as? Int, let modifiers = data["modifiers"] as? [Int] {
+					return MouseClick(CGMouseButton(rawValue: UInt32(button))!, modifiers)
+				}
+			}
+		}
+		
+		return Result()
+	}
 }
 

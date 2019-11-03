@@ -23,6 +23,7 @@
 		9CA8B76121114918004AA89E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B76021114918004AA89E /* Result.swift */; };
 		9CA8B76721116470004AA89E /* LaunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B76621116470004AA89E /* LaunchApp.swift */; };
 		9CA8B76A2111709B004AA89E /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B7692111709B004AA89E /* Context.swift */; };
+		9CCFD0ED222B2C4200FFC729 /* MouseClick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFD0EC222B2C4200FFC729 /* MouseClick.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +65,7 @@
 		9CA8B76021114918004AA89E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		9CA8B76621116470004AA89E /* LaunchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchApp.swift; sourceTree = "<group>"; };
 		9CA8B7692111709B004AA89E /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		9CCFD0EC222B2C4200FFC729 /* MouseClick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseClick.swift; sourceTree = "<group>"; };
 		9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 				9CA8B76021114918004AA89E /* Result.swift */,
 				9CA8B757210D77D7004AA89E /* KeyBinding.swift */,
 				9CA8B76621116470004AA89E /* LaunchApp.swift */,
+				9CCFD0EC222B2C4200FFC729 /* MouseClick.swift */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				9C6A663B2036AB1B008B3321 /* GlassPreferences.swift in Sources */,
 				9C33D8C8202F0D33006968DE /* Region.swift in Sources */,
 				9CA8B75A210E22DD004AA89E /* Activator.swift in Sources */,
+				9CCFD0ED222B2C4200FFC729 /* MouseClick.swift in Sources */,
 				9CA8B76A2111709B004AA89E /* Context.swift in Sources */,
 				9CA8B76721116470004AA89E /* LaunchApp.swift in Sources */,
 				9CA8B76121114918004AA89E /* Result.swift in Sources */,
@@ -322,6 +326,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "glass/glass-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -381,6 +386,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "glass/glass-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

@@ -21,6 +21,7 @@ let glassView = view
 
 var enabledMenuButton = NSMenuItem(title: "Enable GlassCon", action: #selector(GlassPreferences.toggleGlass), keyEquivalent: "")
 
+var profileItems: [NSMenuItem] = []
 
 var glassEnabled = true
 
@@ -35,7 +36,7 @@ func showPreviewWindow()
     view.isHidden = false
     view.needsDisplay = true
     window.contentView = view
-    
+	
     window.cascadeTopLeft(from: NSMakePoint(20, 20))
     window.title = "Touchpad Preview"
     window.makeKeyAndOrderFront(nil)
@@ -74,6 +75,21 @@ func setupMenuBar()
 //    let previewButton = NSMenuItem(title: "Touchpad Preview", action: #selector(glassView.showGlass), keyEquivalent: "")
 //    previewButton.target = glassView
 //    appMenu.addItem(previewButton)
+	
+	appMenu.addItem(NSMenuItem.separator())
+	
+	let selectors = [#selector(GlassPreferences.switchProfile1),
+					 #selector(GlassPreferences.switchProfile2),
+					 #selector(GlassPreferences.switchProfile3)]
+	
+	for x in 0..<3 {
+		let item = NSMenuItem(title: GlassPreferences.slotNames[x], action: selectors[x], keyEquivalent: "")
+		item.target = GlassPreferences.self
+		profileItems.append(item)
+		appMenu.addItem(item)
+	}
+	
+	appMenu.addItem(NSMenuItem.separator())
     
     appMenu.addItem(NSMenuItem(title: "Quit", action: Selector("terminate:"), keyEquivalent: ""))
     appMenuItem.submenu = appMenu
@@ -91,7 +107,9 @@ MTDeviceStart(dev, 0);
 setupMenuBar()
 
 GlassPreferences.showConfigWindow()
-glassView.showGlass()
+//glassView.showGlass()
+
+GlassPreferences.loadProfileSlots()
 
 NSApp.activate(ignoringOtherApps: true)
 NSApp.run()

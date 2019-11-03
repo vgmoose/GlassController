@@ -108,7 +108,7 @@ class GlassView : NSView
     {
         showPreviewWindow()
     }
-    
+
     func sendKey(_ result: Result, _ enabled: Bool)
     {
         if !glassEnabled { return }
@@ -150,4 +150,29 @@ class GlassView : NSView
             path.fill()
         }
     }
+	
+	func fromJSON(_ jsonString: String)
+	{
+		
+	}
+	
+	func toJSON(_ name: String = "Custom Profile") -> String
+	{
+		do {
+			let dictToConvert: [String: Any] = [
+				"name": name,
+				"actions": actions.map { $0.serialize() }
+			]
+			
+			let data = try JSONSerialization.data(withJSONObject: dictToConvert, options: .prettyPrinted)
+			
+			let out = String(data: data, encoding: String.Encoding.utf8)!
+			return out
+			
+		} catch {
+			Swift.print("Error creating json export")
+		}
+		
+		return ""
+	}
 }

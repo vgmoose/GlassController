@@ -21,4 +21,32 @@ class Activator
     {
         return "Unknown Activator"
     }
+	
+	func serialize() -> [String: Any]?
+	{
+		return nil
+	}
+	
+	static func deserialize(_ data: [String: AnyHashable]) -> Activator
+	{
+		// check the type
+		if let type = data["type"] as? String {
+			if type == "Region" {
+				if let x = data["x"] as? Double, let y = data["y"] as? Double,
+					let width = data["width"] as? Double, let height = data["height"] as? Double {
+					return Region(x, y, width, height)
+				}
+			} else if type == "Swipe" {
+				if let fingers = data["fingers"] as? Int, let direction = data["direction"] as? Int {
+					return Gesture(direction, fingers)
+				}
+			} else if type == "Tap" {
+				if let fingers = data["fingers"] as? Int {
+					return Gesture(Gesture.TAP, fingers)
+				}
+			}
+		}
+		
+		return Activator()
+	}
 }

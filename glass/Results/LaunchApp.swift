@@ -25,4 +25,12 @@ class LaunchApp : Result
     {
 		NSWorkspace.shared().launchApplication(key);
     }
+	
+	override func serialize() -> [String: Any]?
+	{
+		return [
+			"type": "LaunchApp",
+			"path": key,
+		]
+	}
 }
