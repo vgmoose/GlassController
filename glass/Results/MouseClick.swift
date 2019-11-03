@@ -57,10 +57,16 @@ class MouseClick : Result
 	
 	override func invoke(_ enabled: Bool)
 	{
+		if (!enabled) {
+			// we fire all at once here, don't care when teh gesture ends
+			return
+		}
 		let cur = CGEvent(source: nil);
 		let point = cur!.location;
 		
-		let event = CGEvent(mouseEventSource: nil, mouseType: CGEventType.otherMouseDown, mouseCursorPosition: point, mouseButton: button)
+		let eventDown = CGEvent(mouseEventSource: nil, mouseType: .otherMouseDown, mouseCursorPosition: point, mouseButton: button)
+		let eventUp = CGEvent(mouseEventSource: nil, mouseType: .otherMouseUp, mouseCursorPosition: point, mouseButton: button)
+
 		
 		var modifiers: CGEventFlags = CGEventFlags(rawValue: 0)
 		
@@ -69,8 +75,11 @@ class MouseClick : Result
 			modifiers.insert(self.resolveModifier(opt))
 		}
 		
-		event!.flags = modifiers
-		event!.post(tap: .cghidEventTap)
+		eventDown!.flags = modifiers
+		eventDown!.post(tap: .cghidEventTap)
+		
+		eventUp!.flags = modifiers
+		eventUp!.post(tap: .cghidEventTap)
 		
 	}
 	

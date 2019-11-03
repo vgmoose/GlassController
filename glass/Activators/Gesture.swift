@@ -27,6 +27,8 @@ class Gesture : Activator
 	
     let minDistance = 0.15
     var matching = false
+	
+	var lastXPos: Double = 0, lastYPos: Double = 0
     
     var sxPos: Double = 0, syPos: Double = 0
     
@@ -70,7 +72,7 @@ class Gesture : Activator
     // relative to the starting xpos, ypos
     func rightDirection(_ xpos: Double, _ ypos: Double) -> Double
     {
-//        if direction == Gesture.TAP { return abs(self.syPos + self.sxPos) - (syPos + sxPos); }
+        if direction == Gesture.TAP { return abs((self.syPos + self.sxPos) - (ypos + xpos)) }
         if direction == Gesture.UP && ypos > self.syPos { return ypos - self.syPos }
         if direction == Gesture.DOWN && ypos < self.syPos { return self.syPos - ypos }
         if direction == Gesture.RIGHT && xpos > self.sxPos { return xpos - self.sxPos }
@@ -81,6 +83,16 @@ class Gesture : Activator
     
     func matches(_ xpos: Double, _ ypos: Double, _ incoming: Int) -> Bool
     {
+		if incoming == 0 {
+			if (Gesture.TAP == direction) {
+				// if we've been up within ~half a second of the last time we went up...
+				// and also haven't moved much... (half of regular treshold)
+				if cur_time.timeIntervalSinceNow > -0.45 && rightDirection(lastXPos, lastYPos) < minDistance / 2
+				{
+					return true
+				}
+			}
+		}
         if incoming == count
         {
             // if matching isn't true, set it and take note of the starting average
@@ -89,9 +101,19 @@ class Gesture : Activator
                 matching = true
                 self.sxPos = xpos
                 self.syPos = ypos
+				
+				cur_time = NSDate()
             }
             else
             {
+				if (Gesture.TAP == direction)
+				{
+					// as long as not too long has passed since touchdown
+					self.lastXPos = xpos
+					self.lastYPos = ypos
+					return false
+				}
+
                 // already matching, if it goes over the bounds in the right direction, activate it
                 let directionalComp = rightDirection(xpos, ypos)
                 
