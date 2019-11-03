@@ -1,0 +1,73 @@
+{
+  "name": "Fingerpad",
+  "actions" : [
+    {
+      "result" : {
+        "type" : "KeyBinding",
+        "modifiers" : [
+
+        ],
+        "keycode" : 126
+      },
+      "activator" : {
+        "y" : 1,
+        "width" : 1,
+        "type" : "Region",
+        "height" : 0.25,
+        "x" : 0
+      },
+      "context" : null
+    },
+    {
+      "result" : {
+        "type" : "KeyBinding",
+        "modifiers" : [
+
+        ],
+        "keycode" : 123
+      },
+      "activator" : {
+        "y" : 1,
+        "width" : 0.25,
+        "type" : "Region",
+        "height" : 1,
+        "x" : 0
+      },
+      "context" : null
+    },
+    {
+      "result" : {
+        "type" : "KeyBinding",
+        "modifiers" : [
+
+        ],
+        "keycode" : 125
+      },
+      "activator" : {
+        "y" : 0.25,
+        "width" : 1,
+        "type" : "Region",
+        "height" : 0.25,
+        "x" : 0
+      },
+      "context" : null
+    },
+    {
+      "result" : {
+        "type" : "KeyBinding",
+        "modifiers" : [
+
+        ],
+        "keycode" : 124
+      },
+      "activator" : {
+        "y" : 1,
+        "width" : 0.25,
+        "type" : "Region",
+        "height" : 1,
+        "x" : 0.75
+      },
+      "context" : null
+    }
+  ]
+}
