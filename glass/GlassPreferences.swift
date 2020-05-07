@@ -18,7 +18,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 	
     func createTableCol(_ tableView: NSTableView, _ text: String)
     {
-        let col = NSTableColumn(identifier: text)
+		let col = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: text))
         tableView.addTableColumn(col)
         col.headerCell.stringValue = text
     }
@@ -114,10 +114,10 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
                    objectValueFor tableColumn: NSTableColumn?,
                    row: Int) -> Any?
     {
-        return glassView.actions[row].getValue((tableColumn?.identifier)!)
+		return glassView.actions[row].getValue((tableColumn?.identifier)!.rawValue)
     }
     
-    static func toggleGlass()
+	@objc static func toggleGlass()
     {
         // toggle the state of the glass controller
         glassEnabled = !glassEnabled
@@ -125,7 +125,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         enabledMenuButton.state = getActivationState()
     }
     
-    static func showConfigWindow()
+	@objc    static func showConfigWindow()
     {
         let window = GlassPreferences()
         window.cascadeTopLeft(from: NSMakePoint(20, 20))
@@ -143,15 +143,15 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 		UserDefaults.standard.set(slot, forKey: "activeProfile")
 	}
 	
-	// three slots to manage profiles in
-	static func switchProfile1() { GlassPreferences.switchProfileCommon(0) }
-	static func switchProfile2() { GlassPreferences.switchProfileCommon(1) }
-	static func switchProfile3() { GlassPreferences.switchProfileCommon(2) }
+	// three slots to manage profiles i@objc n
+	@objc static func switchProfile1() { GlassPreferences.switchProfileCommon(0) }
+	@objc static func switchProfile2() { GlassPreferences.switchProfileCommon(1) }
+	@objc static func switchProfile3() { GlassPreferences.switchProfileCommon(2) }
 	
 	static func loadProfileSlots() {
 		
 		for x in 0..<3 {
-			profileItems[x].state = activeProfileSlot == x ? 1 : 0
+			profileItems[x].state = NSControl.StateValue(rawValue: activeProfileSlot == x ? 1 : 0)
 			profileItems[x].title = UserDefaults.standard.string(forKey: "prefs\(x)_name") ?? "Profile \(x+1)"
 			slotNames[x] = profileItems[x].title
 		}
@@ -207,7 +207,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 		UserDefaults.standard.set(glassView.toJSON(title), forKey: "prefs\(GlassPreferences.activeProfileSlot)_data")
 	}
 	
-	func loadPrefs()
+	@objc func loadPrefs()
 	{
 		let defaultPrefs = "{\"actions\": []}"
 
@@ -216,7 +216,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 		applyPrefs(res ?? defaultPrefs)
 	}
 	
-	func exportProfile()
+	@objc func exportProfile()
 	{
 		let out = glassView.toJSON(profileItems[GlassPreferences.activeProfileSlot].title)
 
@@ -236,25 +236,25 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 		openPanel.nameFieldStringValue = "GlassConPrefs_\(dateString)"
 		
 		openPanel.begin { (result) -> Void in
-			if(result == NSFileHandlingPanelOKButton){
+			if(result.rawValue == NSFileHandlingPanelOKButton){
 				let path = openPanel.url!
 				do {
 					try out.write(to: path, atomically: false, encoding: .utf8)
 				} catch {
-					Swift.print("Some error while writing file")
+					Swift.print("Some error while writing f@objc ile")
 				}
 			}
 		}
 	}
 	
-	func importProfile()
+	@objc func importProfile()
 	{
 		let openPanel = NSOpenPanel();
 		openPanel.title = "Import profile data"
 		openPanel.showsResizeIndicator = true;
 		
 		openPanel.begin { (result) -> Void in
-			if(result == NSFileHandlingPanelOKButton){
+			if(result.rawValue == NSFileHandlingPanelOKButton){
 				let path = openPanel.url!.path
 				do {
 					try self.applyPrefs(String(contentsOfFile: path))

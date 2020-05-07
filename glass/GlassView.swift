@@ -104,7 +104,7 @@ class GlassView : NSView
         regions = actions.filter { $0.activator is Region }
     }
     
-    func showGlass()
+	@objc func showGlass()
     {
         showPreviewWindow()
     }

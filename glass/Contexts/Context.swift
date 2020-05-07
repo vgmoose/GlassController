@@ -26,7 +26,7 @@ class Context
 			return true;
 		}
 		
-		let curApp = NSWorkspace.shared().frontmostApplication?.bundleIdentifier ?? ""
+		let curApp = NSWorkspace.shared.frontmostApplication?.bundleIdentifier ?? ""
 		return curApp == bundle
     }
 	

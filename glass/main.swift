@@ -3,7 +3,7 @@ import AppKit
 import Cocoa
 
 // initialize the application
-NSApplication.shared()
+NSApplication.shared
 
 // hide the dock icon (same as LSUIElement true in Info.plist)
 NSApp.setActivationPolicy(.accessory)
@@ -42,20 +42,20 @@ func showPreviewWindow()
     window.makeKeyAndOrderFront(nil)
 }
 
-func getActivationState() -> NSControlStateValue
+func getActivationState() -> NSControl.StateValue
 {
     if glassEnabled
     {
-        return NSOnState
+        return  NSControl.StateValue.on
     }
     
-    return NSOffState
+    return  NSControl.StateValue.off
 }
 
 func setupMenuBar()
 {
     // create some status bar entries
-    var app = NSApplication.shared()
+	var app = NSApplication.shared
     
     var menuBar = NSMenu()
     var appMenuItem = NSMenuItem()
@@ -94,7 +94,7 @@ func setupMenuBar()
     appMenu.addItem(NSMenuItem(title: "Quit", action: Selector("terminate:"), keyEquivalent: ""))
     appMenuItem.submenu = appMenu
     
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+	let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     statusItem.title = "🔳"
     statusItem.menu = appMenu
 }

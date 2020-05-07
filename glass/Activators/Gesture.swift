@@ -9,7 +9,7 @@ import Foundation
 
 class Gesture : Activator
 {
-    static var UP = 0, DOWN = 1, LEFT = 2, RIGHT = 3, TAP=4
+    static var UP = 0, DOWN = 1, LEFT = 2, RIGHT = 3, TAP = 4
 
     // the direction from the above values
     let direction: Int

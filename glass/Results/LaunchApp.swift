@@ -23,7 +23,7 @@ class LaunchApp : Result
     
     override func invoke(_ enabled: Bool)
     {
-		NSWorkspace.shared().launchApplication(key);
+		NSWorkspace.shared.launchApplication(key);
     }
 	
 	override func serialize() -> [String: Any]?
