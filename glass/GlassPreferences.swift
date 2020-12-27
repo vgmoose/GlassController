@@ -147,6 +147,12 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 	@objc static func switchProfile1() { GlassPreferences.switchProfileCommon(0) }
 	@objc static func switchProfile2() { GlassPreferences.switchProfileCommon(1) }
 	@objc static func switchProfile3() { GlassPreferences.switchProfileCommon(2) }
+    
+    @objc static func restartListeners()
+    {
+        Process.launchedProcess(launchPath: Bundle.main.executablePath!, arguments: [])
+        NSApp.terminate(self)
+    }
 	
 	static func loadProfileSlots() {
 		

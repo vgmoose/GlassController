@@ -91,7 +91,13 @@ func setupMenuBar()
 	
 	appMenu.addItem(NSMenuItem.separator())
     
+    
+    let item = NSMenuItem(title: "Restart", action: #selector(GlassPreferences.restartListeners), keyEquivalent: "")
+    item.target = GlassPreferences.self
+    appMenu.addItem(item)
+    
     appMenu.addItem(NSMenuItem(title: "Quit", action: Selector("terminate:"), keyEquivalent: ""))
+    
     appMenuItem.submenu = appMenu
     
 	let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -100,7 +106,7 @@ func setupMenuBar()
 }
 
 // start touch listener for touchpad event
-let dev = MTDeviceCreateDefault()
+var dev = MTDeviceCreateDefault()
 MTRegisterContactFrameCallback(dev, processTouchpadData);
 MTDeviceStart(dev, 0);
 

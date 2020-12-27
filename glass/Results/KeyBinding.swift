@@ -54,18 +54,20 @@ class KeyBinding : Result
     
     override func invoke(_ enabled: Bool)
     {
-        let inputKeyCode = CGKeyCode(self.code)
-        let event = CGEvent(keyboardEventSource: nil, virtualKey: inputKeyCode, keyDown: enabled)
-        var modifiers: CGEventFlags = CGEventFlags(rawValue: 0)
-        
-        for opt in self.opts
+        DispatchQueue.main.sync
         {
-            modifiers.insert(self.resolveModifier(opt))
+            let inputKeyCode = CGKeyCode(self.code)
+            let event = CGEvent(keyboardEventSource: nil, virtualKey: inputKeyCode, keyDown: enabled)
+            var modifiers: CGEventFlags = CGEventFlags(rawValue: 0)
+            
+            for opt in self.opts
+            {
+                modifiers.insert(self.resolveModifier(opt))
+            }
+            
+            event!.flags = modifiers
+            event!.post(tap: .cghidEventTap)
         }
-        
-        event!.flags = modifiers
-        event!.post(tap: .cghidEventTap)
-        
     }
 	
 	override func serialize() -> [String: Any]?

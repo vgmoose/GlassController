@@ -61,25 +61,29 @@ class MouseClick : Result
 			// we fire all at once here, don't care when teh gesture ends
 			return
 		}
-		let cur = CGEvent(source: nil);
-		let point = cur!.location;
-		
-		let eventDown = CGEvent(mouseEventSource: nil, mouseType: .otherMouseDown, mouseCursorPosition: point, mouseButton: button)
-		let eventUp = CGEvent(mouseEventSource: nil, mouseType: .otherMouseUp, mouseCursorPosition: point, mouseButton: button)
+        
+        DispatchQueue.main.sync
+        {
+            let cur = CGEvent(source: nil);
+            let point = cur!.location;
+            
+            let eventDown = CGEvent(mouseEventSource: nil, mouseType: .otherMouseDown, mouseCursorPosition: point, mouseButton: button)
+            let eventUp = CGEvent(mouseEventSource: nil, mouseType: .otherMouseUp, mouseCursorPosition: point, mouseButton: button)
 
-		
-		var modifiers: CGEventFlags = CGEventFlags(rawValue: 0)
-		
-		for opt in self.opts
-		{
-			modifiers.insert(self.resolveModifier(opt))
-		}
-		
-		eventDown!.flags = modifiers
-		eventDown!.post(tap: .cghidEventTap)
-		
-		eventUp!.flags = modifiers
-		eventUp!.post(tap: .cghidEventTap)
+            
+            var modifiers: CGEventFlags = CGEventFlags(rawValue: 0)
+            
+            for opt in self.opts
+            {
+                modifiers.insert(self.resolveModifier(opt))
+            }
+            
+            eventDown!.flags = modifiers
+            eventDown!.post(tap: .cghidEventTap)
+            
+            eventUp!.flags = modifiers
+            eventUp!.post(tap: .cghidEventTap)
+        }
 		
 	}
 	

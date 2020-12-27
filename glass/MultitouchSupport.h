@@ -24,3 +24,4 @@ typedef int (*MTContactCallbackFunction)(int,Finger*,int,double,int);
 MTDeviceRef MTDeviceCreateDefault(void);
 void MTRegisterContactFrameCallback(MTDeviceRef, MTContactCallbackFunction);
 void MTDeviceStart(MTDeviceRef, int); // thanks comex
+void MTDeviceStop(MTDeviceRef);
