@@ -48,10 +48,10 @@ class GlassView : NSView
             var center = CGPoint()
             let bounds = self.bounds
             
-            let radius = CGSize(width: CGFloat(finger.size)*20, height: CGFloat(finger.size)*20)
+			let radius = CGSize(width: CGFloat(finger.zTotal)*20, height: CGFloat(finger.zTotal)*20)
 
-            center.x = CGFloat(finger.normalized.pos.x * Float(bounds.width)) - CGFloat(radius.width/2)
-            center.y = CGFloat(finger.normalized.pos.y * Float(bounds.height)) - CGFloat(radius.height/2)
+            center.x = CGFloat(finger.normalizedVector.position.x * Float(bounds.width)) - CGFloat(radius.width/2)
+			center.y = CGFloat(finger.normalizedVector.position.y * Float(bounds.height)) - CGFloat(radius.height/2)
 
             let path = NSBezierPath(ovalIn: CGRect(origin: center, size: radius))
             NSColor.gray.setFill()

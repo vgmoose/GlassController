@@ -106,9 +106,14 @@ func setupMenuBar()
 }
 
 // start touch listener for touchpad event
-var dev = MTDeviceCreateDefault()
-MTRegisterContactFrameCallback(dev, processTouchpadData);
-MTDeviceStart(dev, 0);
+var isTrue = MTDeviceIsAvailable()
+
+var devices = MTDeviceCreateList()!
+for x in 0..<devices.count {
+	let dev = devices[x] as MTDevice
+	MTRegisterContactFrameCallback(dev, processTouchpadData);
+	MTDeviceStart(dev, 0);
+}
 
 setupMenuBar()
 

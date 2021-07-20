@@ -1,0 +1,123 @@
+{
+  "actions" : [
+    {
+      "result" : {
+        "modifiers" : [
+          59
+        ],
+        "type" : "KeyBinding",
+        "keycode" : 126
+      },
+      "activator" : {
+        "fingers" : 4,
+        "direction" : 1,
+        "type" : "Swipe"
+      },
+      "context" : null
+    },
+    {
+      "context" : null,
+      "activator" : {
+        "direction" : 0,
+        "type" : "Swipe",
+        "fingers" : 4
+      },
+      "result" : {
+        "type" : "KeyBinding",
+        "modifiers" : [
+          59
+        ],
+        "keycode" : 125
+      }
+    },
+    {
+      "activator" : {
+        "fingers" : 5,
+        "direction" : 1,
+        "type" : "Swipe"
+      },
+      "context" : null,
+      "result" : {
+        "type" : "KeyBinding",
+        "modifiers" : [
+          55
+        ],
+        "keycode" : 13
+      }
+    },
+    {
+      "activator" : {
+        "type" : "Tap",
+        "fingers" : 4
+      },
+      "context" : null,
+      "result" : {
+        "modifiers" : [
+          55
+        ],
+        "type" : "MouseClick",
+        "button" : 0
+      }
+    },
+    {
+      "context" : null,
+      "activator" : {
+        "fingers" : 5,
+        "type" : "Tap"
+      },
+      "result" : {
+        "path" : "\/System\/Library\/CoreServices\/Finder.app",
+        "type" : "LaunchApp"
+      }
+    },
+    {
+      "result" : {
+        "path" : "\/Applications\/Utilities\/Terminal.app",
+        "type" : "LaunchApp"
+      },
+      "context" : null,
+      "activator" : {
+        "direction" : 0,
+        "type" : "Swipe",
+        "fingers" : 5
+      }
+    },
+    {
+      "result" : {
+        "type" : "KeyBinding",
+        "keycode" : 126,
+        "modifiers" : [
+
+        ]
+      },
+      "activator" : {
+        "direction" : 2,
+        "type" : "Swipe",
+        "fingers" : 2
+      },
+      "context" : {
+        "bundle" : "com.apple.Terminal",
+        "type" : "AppBundle"
+      }
+    },
+    {
+      "result" : {
+        "modifiers" : [
+
+        ],
+        "keycode" : 125,
+        "type" : "KeyBinding"
+      },
+      "context" : {
+        "type" : "AppBundle",
+        "bundle" : "com.apple.Terminal"
+      },
+      "activator" : {
+        "fingers" : 2,
+        "direction" : 3,
+        "type" : "Swipe"
+      }
+    }
+  ],
+  "name" : "Enhancements"
+}

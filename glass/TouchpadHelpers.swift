@@ -2,10 +2,11 @@ import Foundation
 
 public func printTouchInfo(_ finger: Finger)
 {
-    print("Frame \(finger.frame): Angle \(finger.angle * 90 / atan2(1,0)), ellipse \(finger.majorAxis) \(finger.minorAxis); position (\(finger.normalized.pos.x),\(finger.normalized.pos.y) vel (\(finger.normalized.vel.x),\(finger.normalized.vel.y); ID \(finger.identifier), state \(finger.state) [\(finger.foo3) \(finger.foo4)?] size \(finger.size), \(finger.unk2)?\n")
+//    print("Frame \(finger.frame): Angle \(finger.angle * 90 / atan2(1,0)), ellipse \(finger.majorAxis) \(finger.minorAxis); position (\(finger.normalized.pos.x),\(finger.normalized.pos.y) vel (\(finger.normalized.vel.x),\(finger.normalized.vel.y); ID \(finger.identifier), state \(finger.state) [\(finger.foo3) \(finger.foo4)?] size \(finger.size), \(finger.unk2)?\n")
 }
 
-public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutablePointer<Finger>>, _ nFingers: Int32, _ timestamp: Double, _ frame: Int32) -> Int32
+// MTDeviceRef device, MTTouch touches[], size_t numTouches, double timestamp, size_t frame
+public func processTouchpadData(_ device: Optional<AnyObject>, _ data: Optional<UnsafeMutablePointer<Finger>>, _ nFingers: Int, _ timestamp: Double, _ frame: Int) -> ()
 {
 
     let fingers = Array(UnsafeBufferPointer(start: data, count: Int(nFingers)))
@@ -24,8 +25,8 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
     {
         printTouchInfo(finger)
 
-        let xpos = Double(finger.normalized.pos.x)
-        let ypos = Double(finger.normalized.pos.y)
+		let xpos = Double(finger.normalizedVector.position.x)
+		let ypos = Double(finger.normalizedVector.position.y)
         
         for action in glassView.regions
         {
@@ -79,7 +80,5 @@ public func processTouchpadData(_ device: Int32, _ data: Optional<UnsafeMutableP
     }
     
     // update which keys are down right nowsss
-    view.pressed = pressedClone
-    
-    return 0;
+    view.pressed = pressedClone    
 }

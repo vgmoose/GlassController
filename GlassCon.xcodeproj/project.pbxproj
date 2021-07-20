@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9C33D8C8202F0D33006968DE /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C33D8C7202F0D33006968DE /* Region.swift */; };
 		9C34F9A5200EEC9300EA3EA7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C34F9A4200EEC9300EA3EA7 /* IOKit.framework */; };
-		9C34F9A8200EED0100EA3EA7 /* VirtualKeyboard.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C34F9A7200EED0100EA3EA7 /* VirtualKeyboard.c */; };
 		9C522ED3200C704C00E201B5 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C345B4C200B157E00B54969 /* ApplicationServices.framework */; };
 		9C522ED4200C707B00E201B5 /* MultitouchSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */; };
 		9C522ED7200C771900E201B5 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED6200C771900E201B5 /* GlassView.swift */; };
@@ -24,6 +23,13 @@
 		9CA8B76721116470004AA89E /* LaunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B76621116470004AA89E /* LaunchApp.swift */; };
 		9CA8B76A2111709B004AA89E /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B7692111709B004AA89E /* Context.swift */; };
 		9CCFD0ED222B2C4200FFC729 /* MouseClick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFD0EC222B2C4200FFC729 /* MouseClick.swift */; };
+		F400005E2594FC46004C7715 /* TouchpadHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F400005D2594FC46004C7715 /* TouchpadHelpers.swift */; };
+		F400005F2594FC46004C7715 /* TouchpadHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F400005D2594FC46004C7715 /* TouchpadHelpers.swift */; };
+		F436FD6424DA4FBB00397F75 /* GlassControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F436FD6324DA4FBB00397F75 /* GlassControllerApp.swift */; };
+		F436FD6624DA4FBB00397F75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F436FD6524DA4FBB00397F75 /* ContentView.swift */; };
+		F436FD6824DA4FBD00397F75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F436FD6724DA4FBD00397F75 /* Assets.xcassets */; };
+		F436FD6B24DA4FBD00397F75 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F436FD6A24DA4FBD00397F75 /* Preview Assets.xcassets */; };
+		F493045C24DAAD97005BE41A /* ActionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493045B24DAAD97005BE41A /* ActionRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,8 +53,6 @@
 		9C345B57200B2A3E00B54969 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2.a; sourceTree = "<group>"; };
 		9C345B5A200B2AC100B54969 /* libSDL2main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2main.a; path = ../../../../../../../usr/local/Cellar/sdl2/2.0.7/lib/libSDL2main.a; sourceTree = "<group>"; };
 		9C34F9A4200EEC9300EA3EA7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		9C34F9A6200EED0100EA3EA7 /* VirtualKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirtualKeyboard.h; sourceTree = "<group>"; };
-		9C34F9A7200EED0100EA3EA7 /* VirtualKeyboard.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = VirtualKeyboard.c; sourceTree = "<group>"; };
 		9C46F5982009B81800F9E926 /* MultitouchSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultitouchSupport.h; sourceTree = "<group>"; };
 		9C46F59D2009BCEF00F9E926 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9C522EC9200C6D8900E201B5 /* GlassCon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GlassCon; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +71,16 @@
 		9CA8B7692111709B004AA89E /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		9CCFD0EC222B2C4200FFC729 /* MouseClick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseClick.swift; sourceTree = "<group>"; };
 		9CF17B3C200C53CB00B65DC5 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
+		F400005D2594FC46004C7715 /* TouchpadHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchpadHelpers.swift; sourceTree = "<group>"; };
+		F436FD6124DA4FBB00397F75 /* GlassController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F436FD6324DA4FBB00397F75 /* GlassControllerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassControllerApp.swift; sourceTree = "<group>"; };
+		F436FD6524DA4FBB00397F75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F436FD6724DA4FBD00397F75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F436FD6A24DA4FBD00397F75 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F436FD6C24DA4FBD00397F75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F436FD6D24DA4FBD00397F75 /* GlassController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlassController.entitlements; sourceTree = "<group>"; };
+		F493045B24DAAD97005BE41A /* ActionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRowView.swift; sourceTree = "<group>"; };
+		F4B94A24247085370056CBFA /* GlassCon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlassCon.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +91,13 @@
 				9C34F9A5200EEC9300EA3EA7 /* IOKit.framework in Frameworks */,
 				9C522ED4200C707B00E201B5 /* MultitouchSupport.framework in Frameworks */,
 				9C522ED3200C704C00E201B5 /* ApplicationServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F436FD5E24DA4FBB00397F75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +112,9 @@
 		9C46F5852009B7C000F9E926 = {
 			isa = PBXGroup;
 			children = (
+				F4B94A24247085370056CBFA /* GlassCon.entitlements */,
 				9C522ECA200C6D8900E201B5 /* glass */,
+				F436FD6224DA4FBB00397F75 /* GlassController */,
 				9C46F5912009B7E900F9E926 /* Products */,
 				9C46F59C2009BCEE00F9E926 /* Frameworks */,
 			);
@@ -101,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				9C522EC9200C6D8900E201B5 /* GlassCon */,
+				F436FD6124DA4FBB00397F75 /* GlassController.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,8 +159,7 @@
 				9CA8B7682111708E004AA89E /* Contexts */,
 				9CA8B75D210E25D2004AA89E /* Utils.m */,
 				9C522ED5200C771900E201B5 /* glass-Bridging-Header.h */,
-				9C34F9A6200EED0100EA3EA7 /* VirtualKeyboard.h */,
-				9C34F9A7200EED0100EA3EA7 /* VirtualKeyboard.c */,
+				F400005D2594FC46004C7715 /* TouchpadHelpers.swift */,
 			);
 			path = glass;
 			sourceTree = "<group>";
@@ -170,6 +193,28 @@
 			path = Contexts;
 			sourceTree = "<group>";
 		};
+		F436FD6224DA4FBB00397F75 /* GlassController */ = {
+			isa = PBXGroup;
+			children = (
+				F436FD6324DA4FBB00397F75 /* GlassControllerApp.swift */,
+				F436FD6524DA4FBB00397F75 /* ContentView.swift */,
+				F436FD6724DA4FBD00397F75 /* Assets.xcassets */,
+				F436FD6C24DA4FBD00397F75 /* Info.plist */,
+				F436FD6D24DA4FBD00397F75 /* GlassController.entitlements */,
+				F436FD6924DA4FBD00397F75 /* Preview Content */,
+				F493045B24DAAD97005BE41A /* ActionRowView.swift */,
+			);
+			path = GlassController;
+			sourceTree = "<group>";
+		};
+		F436FD6924DA4FBD00397F75 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F436FD6A24DA4FBD00397F75 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,18 +235,39 @@
 			productReference = 9C522EC9200C6D8900E201B5 /* GlassCon */;
 			productType = "com.apple.product-type.tool";
 		};
+		F436FD6024DA4FBB00397F75 /* GlassController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F436FD7024DA4FBD00397F75 /* Build configuration list for PBXNativeTarget "GlassController" */;
+			buildPhases = (
+				F436FD5D24DA4FBB00397F75 /* Sources */,
+				F436FD5E24DA4FBB00397F75 /* Frameworks */,
+				F436FD5F24DA4FBB00397F75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GlassController;
+			productName = GlassController;
+			productReference = F436FD6124DA4FBB00397F75 /* GlassController.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9C46F5862009B7C000F9E926 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 0920;
 				TargetAttributes = {
 					9C522EC8200C6D8900E201B5 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+					};
+					F436FD6024DA4FBB00397F75 = {
+						CreatedOnToolsVersion = 12.0;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -226,9 +292,22 @@
 			projectRoot = "";
 			targets = (
 				9C522EC8200C6D8900E201B5 /* GlassCon */,
+				F436FD6024DA4FBB00397F75 /* GlassController */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F436FD5F24DA4FBB00397F75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F436FD6B24DA4FBD00397F75 /* Preview Assets.xcassets in Resources */,
+				F436FD6824DA4FBD00397F75 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9C522EC5200C6D8900E201B5 /* Sources */ = {
@@ -237,10 +316,10 @@
 			files = (
 				9C522ED9200C777B00E201B5 /* main.swift in Sources */,
 				9CA8B75C210E2326004AA89E /* Action.swift in Sources */,
-				9C34F9A8200EED0100EA3EA7 /* VirtualKeyboard.c in Sources */,
 				9CA8B75E210E25D2004AA89E /* Utils.m in Sources */,
 				9C522ED7200C771900E201B5 /* GlassView.swift in Sources */,
 				9CA8B758210D77D7004AA89E /* KeyBinding.swift in Sources */,
+				F400005E2594FC46004C7715 /* TouchpadHelpers.swift in Sources */,
 				9CA8B756210D5EB2004AA89E /* Gesture.swift in Sources */,
 				9C6A663B2036AB1B008B3321 /* GlassPreferences.swift in Sources */,
 				9C33D8C8202F0D33006968DE /* Region.swift in Sources */,
@@ -249,6 +328,17 @@
 				9CA8B76A2111709B004AA89E /* Context.swift in Sources */,
 				9CA8B76721116470004AA89E /* LaunchApp.swift in Sources */,
 				9CA8B76121114918004AA89E /* Result.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F436FD5D24DA4FBB00397F75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F436FD6624DA4FBB00397F75 /* ContentView.swift in Sources */,
+				F493045C24DAAD97005BE41A /* ActionRowView.swift in Sources */,
+				F436FD6424DA4FBB00397F75 /* GlassControllerApp.swift in Sources */,
+				F400005F2594FC46004C7715 /* TouchpadHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,11 +388,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = GlassCon.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = C34C2M7MC7;
+				DEVELOPMENT_TEAM = 9UDT7LSCEF;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -327,6 +418,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = games.newt.glasscontroller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -365,11 +457,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = GlassCon.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = C34C2M7MC7;
+				DEVELOPMENT_TEAM = 9UDT7LSCEF;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -387,11 +480,154 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = games.newt.glasscontroller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "glass/glass-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		F436FD6E24DA4FBD00397F75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = GlassController/GlassController.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"GlassController/Preview Content\"";
+				DEVELOPMENT_TEAM = 9UDT7LSCEF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = GlassController/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = games.newt.GlassController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F436FD6F24DA4FBD00397F75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = GlassController/GlassController.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"GlassController/Preview Content\"";
+				DEVELOPMENT_TEAM = 9UDT7LSCEF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = GlassController/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = games.newt.GlassController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -412,6 +648,15 @@
 			buildConfigurations = (
 				9C522ECE200C6D8900E201B5 /* Debug */,
 				9C522ECF200C6D8900E201B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F436FD7024DA4FBD00397F75 /* Build configuration list for PBXNativeTarget "GlassController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F436FD6E24DA4FBD00397F75 /* Debug */,
+				F436FD6F24DA4FBD00397F75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
