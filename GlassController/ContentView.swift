@@ -1,6 +1,6 @@
 import SwiftUI
 
-let food = ["Spaghetti", "Cheese Burger", "Pizza", "Fried Rice", "Spaghetti", "Cheese Burger", "Pizza", "Fried Rice"]
+let food = ["Spaghetti", "Fried Rice"]
 
 func delete(index: IndexSet) {
     print("Deleted")

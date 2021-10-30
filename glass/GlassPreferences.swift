@@ -16,6 +16,9 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 	
 	static var me: GlassPreferences? = nil
 	
+	let glassView: GlassView
+	let glassDelegate: GlassDelegate
+	
     func createTableCol(_ tableView: NSTableView, _ text: String)
     {
 		let col = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: text))
@@ -23,10 +26,13 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         col.headerCell.stringValue = text
     }
     
-    init()
+	init(_ delegate: GlassDelegate)
     {
         let WIDTH = CGFloat(750)
         let HEIGHT = CGFloat(350)
+		
+		self.glassDelegate = delegate
+		self.glassView = delegate.view!
         
         let configRect = NSMakeRect(0, 0, WIDTH, HEIGHT)
 		self.tableView = NSTableView(frame:NSMakeRect(0, 0, WIDTH-16, HEIGHT-100))
@@ -34,6 +40,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 		
 		// load from the active slot!
 		self.loadPrefs()
+				
 		glassView.syncActions()
 		
         let window = self
@@ -107,27 +114,29 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
     
     func numberOfRows(in tableView: NSTableView) -> Int
     {
-        return glassView.actions.count;
+		return glassDelegate.view!.actions.count;
     }
     
     func tableView(_ tableView: NSTableView,
                    objectValueFor tableColumn: NSTableColumn?,
                    row: Int) -> Any?
     {
-		return glassView.actions[row].getValue((tableColumn?.identifier)!.rawValue)
+		return glassDelegate.view!.actions[row].getValue((tableColumn?.identifier)!.rawValue)
     }
     
 	@objc static func toggleGlass()
     {
+		let glassDelegate = GlassDelegate.singleton!
+
         // toggle the state of the glass controller
-        glassEnabled = !glassEnabled
+		glassDelegate.glassEnabled = !glassDelegate.glassEnabled
         
-        enabledMenuButton.state = getActivationState()
+		glassDelegate.enabledMenuButton.state = glassDelegate.getActivationState()
     }
     
-	@objc    static func showConfigWindow()
+	@objc static func showConfigWindow()
     {
-        let window = GlassPreferences()
+		let window = GlassPreferences(GlassDelegate.singleton!)
         window.cascadeTopLeft(from: NSMakePoint(20, 20))
         window.title = "GlassCon Preferences"
         window.makeKeyAndOrderFront(nil)
@@ -155,6 +164,8 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
     }
 	
 	static func loadProfileSlots() {
+		
+		let profileItems = GlassDelegate.singleton!.profileItems
 		
 		for x in 0..<3 {
 			profileItems[x].state = NSControl.StateValue(rawValue: activeProfileSlot == x ? 1 : 0)
@@ -209,7 +220,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 	
 	func savePrefs()
 	{
-		let title = profileItems[GlassPreferences.activeProfileSlot].title
+		let title = glassDelegate.profileItems[GlassPreferences.activeProfileSlot].title
 		UserDefaults.standard.set(glassView.toJSON(title), forKey: "prefs\(GlassPreferences.activeProfileSlot)_data")
 	}
 	
@@ -224,7 +235,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 	
 	@objc func exportProfile()
 	{
-		let out = glassView.toJSON(profileItems[GlassPreferences.activeProfileSlot].title)
+		let out = glassView.toJSON(glassDelegate.profileItems[GlassPreferences.activeProfileSlot].title)
 
 		let openPanel = NSSavePanel();
 		openPanel.title = "Export profile data"

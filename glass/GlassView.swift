@@ -10,9 +10,20 @@ class GlassView : NSView
     var regions: [Action] = []
     
     var pressed:Set<Result> = Set()
+	
+	let delegate: GlassDelegate
     
 //    var activated = false
-    
+	
+	override init(frame frameRect: NSRect) {
+		self.delegate = GlassDelegate.singleton!
+		super.init(frame: frameRect)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
     func refresh()
     {
         // TODO: don't go in here at all unless the display is up
@@ -30,12 +41,12 @@ class GlassView : NSView
     
 	@objc func showGlass()
     {
-        showPreviewWindow()
+		delegate.showPreviewWindow()
     }
 
     func sendKey(_ result: Result, _ enabled: Bool)
     {
-        if !glassEnabled { return }
+		if !delegate.glassEnabled { return }
         
         // invoke this keybinding, as well as whatever modifiers it has
         result.invoke(enabled)

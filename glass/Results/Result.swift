@@ -8,8 +8,10 @@ import Foundation
 
 class Result : Hashable
 {
-    var hashValue: Int = 0
-    
+	func hash(into hasher: inout Hasher) {
+		// override in subclass
+	}
+
     static func ==(lhs: Result, rhs: Result) -> Bool {
         return lhs.code == rhs.code && lhs.opts == rhs.opts && lhs.key == rhs.key
     }

@@ -14,8 +14,11 @@ class LaunchApp : Result
         super.init()
         
         super.key = path
-        super.hashValue = path.hashValue
     }
+	
+	override func hash(into hasher: inout Hasher) {
+		hasher.combine(self.key)
+	}
     
     override func toString() -> String {
         return "\(self.key.split(separator: "/").last ?? "?")"

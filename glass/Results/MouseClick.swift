@@ -19,7 +19,11 @@ class MouseClick : Result
 		super.code = Int(button.rawValue)
 		
 		super.key = MouseClick.calculateForCode(code)
-		super.hashValue = self.code * self.opts.reduce(0, { $0 + $1 })
+	}
+	
+	override func hash(into hasher: inout Hasher) {
+		hasher.combine(self.code)
+		hasher.combine(self.opts.reduce(0, { $0 + $1 }))
 	}
 	
 	static func calculateForCode(_ code: Int) -> String

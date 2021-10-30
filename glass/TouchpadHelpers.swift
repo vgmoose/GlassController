@@ -10,6 +10,9 @@ public func processTouchpadData(_ device: Optional<AnyObject>, _ data: Optional<
 {
 
     let fingers = Array(UnsafeBufferPointer(start: data, count: Int(nFingers)))
+	
+	let view = GlassDelegate.glassView!
+	let glassView = view
     
     view.fingers = fingers
     view.refresh()
