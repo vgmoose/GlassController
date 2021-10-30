@@ -81,17 +81,17 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 		inner.addSubview(importB)
         
         // the + and - buttons for actions
-        let controls = NSSegmentedControl()
-        controls.frame = NSMakeRect(0, 0, 100, 30)
-        controls.frame.origin = CGPoint(x: 5, y: 70)
-        controls.segmentCount = 2
-        controls.setLabel("+", forSegment: 0)
-        controls.setLabel("-", forSegment: 1)
-        controls.segmentStyle = .smallSquare
-        if #available(OSX 10.10.3, *) {
-            controls.trackingMode = .momentary
-        }
-        inner.addSubview(controls)
+//        let controls = NSSegmentedControl()
+//        controls.frame = NSMakeRect(0, 0, 100, 30)
+//        controls.frame.origin = CGPoint(x: 5, y: 70)
+//        controls.segmentCount = 2
+//        controls.setLabel("+", forSegment: 0)
+//        controls.setLabel("-", forSegment: 1)
+//        controls.segmentStyle = .smallSquare
+//        if #available(OSX 10.10.3, *) {
+//            controls.trackingMode = .momentary
+//        }
+//        inner.addSubview(controls)
         
         // the current regions on the touchpad and action mappings
         let tableContainer = NSScrollView(frame:NSMakeRect(0, 0, WIDTH, HEIGHT-100))
@@ -114,13 +114,21 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
     
     func numberOfRows(in tableView: NSTableView) -> Int
     {
-		return glassDelegate.view!.actions.count;
+		let count = glassDelegate.view!.actions.count
+		if count == 0 {
+			return 1
+		}
+		return count
     }
     
     func tableView(_ tableView: NSTableView,
                    objectValueFor tableColumn: NSTableColumn?,
                    row: Int) -> Any?
     {
+		let count = glassDelegate.view!.actions.count
+		if count == 0 {
+			return "No actions exist in this profile. See the Readme for more information."
+		}
 		return glassDelegate.view!.actions[row].getValue((tableColumn?.identifier)!.rawValue)
     }
     
@@ -137,6 +145,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 	@objc static func showConfigWindow()
     {
 		let window = GlassPreferences(GlassDelegate.singleton!)
+		window.isReleasedWhenClosed = false
         window.cascadeTopLeft(from: NSMakePoint(20, 20))
         window.title = "GlassCon Preferences"
         window.makeKeyAndOrderFront(nil)

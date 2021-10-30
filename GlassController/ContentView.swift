@@ -9,11 +9,18 @@ func delete(index: IndexSet) {
 struct ContentView: View {
     var body: some View {
         Text("This app allows you to configure different actions (such as key bindings) depending on gestures/input from the touchpad.").padding()
-        Button(action: {
-            print("ello")
-        }) {
-            Text("License")
-        }.padding()
+		HStack {
+			Button(action: {
+				GlassDelegate.glassView!.showGlass()
+			}) {
+				Text("Touchpad Preview")
+			}.padding()
+			Button(action: {
+				NSWorkspace.shared.open(URL(string: "https://github.com/vgmoose/GlassController")!)
+			}) {
+				Text("Source Code")
+			}.padding()
+		}
         HStack() {
             Text("Select Profile")
 //            Dropdown(["hi", "no"])
@@ -23,7 +30,10 @@ struct ContentView: View {
             .bold()
         ScrollView(.horizontal) {
             ForEach(food, id: \.self) { data in
-                ActionRowView().padding()
+                ActionRowView(action: Action(
+					KeyBinding(10),
+				 Gesture(Gesture.UP, 4)
+			 )).padding()
             }
         }
         .padding()

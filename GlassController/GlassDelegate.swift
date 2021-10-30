@@ -22,6 +22,7 @@ class GlassDelegate : NSObject, NSApplicationDelegate
 	var glassEnabled = true
 	
 	var menuBar: NSMenu?
+	var statusItem: NSStatusItem?
 	
 	override init(){
 		super.init()
@@ -51,11 +52,16 @@ class GlassDelegate : NSObject, NSApplicationDelegate
 	
 	func showPreviewWindow()
 	{
-		// window already being displayed, return
-		if previewWindow != nil { return }
+		// window already created, show it
+		if let pw = previewWindow {
+			pw.makeKeyAndOrderFront(nil)
+			return
+		}
 		
 		let window = NSWindow(contentRect: frameRect, styleMask: [.titled, .closable], backing: .buffered, defer: false)
 		previewWindow = window;
+
+		window.isReleasedWhenClosed = false
 
 		view!.isHidden = false
 		view!.needsDisplay = true
@@ -78,7 +84,7 @@ class GlassDelegate : NSObject, NSApplicationDelegate
 
 	func setupMenuBar()
 	{
-		menuBar = NSMenu()
+		menuBar = NSApplication.shared.mainMenu
 		let appMenuItem = NSMenuItem()
 		menuBar!.addItem(appMenuItem)
 
@@ -86,7 +92,7 @@ class GlassDelegate : NSObject, NSApplicationDelegate
 		enabledMenuButton.state = getActivationState()
 		enabledMenuButton.target = GlassPreferences.self
 		appMenu.addItem(enabledMenuButton)
-		
+
 		let preferencesButton = NSMenuItem(title: "Preferences", action: #selector(GlassPreferences.showConfigWindow), keyEquivalent: "")
 		preferencesButton.target = GlassPreferences.self
 		appMenu.addItem(preferencesButton)
@@ -94,35 +100,37 @@ class GlassDelegate : NSObject, NSApplicationDelegate
 	//    let previewButton = NSMenuItem(title: "Touchpad Preview", action: #selector(glassView.showGlass), keyEquivalent: "")
 	//    previewButton.target = glassView
 	//    appMenu.addItem(previewButton)
-		
+
 		appMenu.addItem(NSMenuItem.separator())
-		
+
 		let selectors = [#selector(GlassPreferences.switchProfile1),
 						 #selector(GlassPreferences.switchProfile2),
 						 #selector(GlassPreferences.switchProfile3)]
-		
+
 		for x in 0..<3 {
 			let item = NSMenuItem(title: GlassPreferences.slotNames[x], action: selectors[x], keyEquivalent: "")
 			item.target = GlassPreferences.self
 			profileItems.append(item)
 			appMenu.addItem(item)
 		}
-		
+
 		appMenu.addItem(NSMenuItem.separator())
-		
-		
+
+
 		let item = NSMenuItem(title: "Restart", action: #selector(GlassPreferences.restartListeners), keyEquivalent: "")
 		item.target = GlassPreferences.self
 		appMenu.addItem(item)
-		
+
 		appMenu.addItem(NSMenuItem(title: "Quit", action: Selector("terminate:"), keyEquivalent: ""))
-		
+
 		appMenuItem.submenu = appMenu
 		
-		let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-		statusItem.button!.title = "🔳"
-		statusItem.button!.sizeToFit()
-		statusItem.menu = appMenu
+		statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+		statusItem!.button!.title = "🔳"
+		statusItem!.button!.sizeToFit()
+		statusItem!.isVisible = true
+		statusItem!.menu = appMenu
+		
 	}
 
 	func applicationDidFinishLaunching(_ notification: Notification)
@@ -139,6 +147,6 @@ class GlassDelegate : NSObject, NSApplicationDelegate
 		NSApp.activate(ignoringOtherApps: true)
 		
 		// hide the dock icon (same as LSUIElement true in Info.plist)
-//		NSApp.setActivationPolicy(.accessory)
+		NSApp.setActivationPolicy(.accessory)
 	}
 }
