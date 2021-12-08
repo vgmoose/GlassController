@@ -81,64 +81,64 @@ class Gesture : Activator
         return -1
     }
     
-    func matches(_ xpos: Double, _ ypos: Double, _ incoming: Int) -> Bool
-    {
-		if incoming == 0 {
-			if (Gesture.TAP == direction) {
-				// if we've been up within ~half a second of the last time we went up...
-				// and also haven't moved much... (half of regular treshold)
-				if cur_time.timeIntervalSinceNow > -0.45 && rightDirection(lastXPos, lastYPos) < minDistance / 2
-				{
-					return true
-				}
-			}
-		}
-        if incoming == count
-        {
-            // if matching isn't true, set it and take note of the starting average
-            if !matching
-            {
-                matching = true
-                self.sxPos = xpos
-                self.syPos = ypos
-				
-				cur_time = NSDate()
-            }
-            else
-            {
-				if (Gesture.TAP == direction)
-				{
-					// as long as not too long has passed since touchdown
-					self.lastXPos = xpos
-					self.lastYPos = ypos
-					return false
-				}
-
-                // already matching, if it goes over the bounds in the right direction, activate it
-                let directionalComp = rightDirection(xpos, ypos)
-                
-                if directionalComp >= 0
-                {
-                    // if we meet the treshold
-                    if directionalComp > minDistance
-                    {
-                        return true
-                    }
-                    
-                    // otherwise, no problem, might match next time
-                }
-                else
-                {
-                    // broke going in the right direction, unmatch
-                    matching = false
-                }
-            }
-        }
-        else
-        {
-            matching = false
-        }
-        
-        return false
-    }
+//    func matches(_ speeds: [MTPoint], _ incoming: Int) -> Bool
+//    {
+//		if incoming == 0 {
+//			if (Gesture.TAP == direction) {
+//				// if we've been up within ~half a second of the last time we went up...
+//				// and also haven't moved much... (half of regular treshold)
+//				if cur_time.timeIntervalSinceNow > -0.45 && rightDirection(lastXPos, lastYPos) < minDistance / 2
+//				{
+//					return true
+//				}
+//			}
+//		}
+//        if incoming == count
+//        {
+//            // if matching isn't true, set it and take note of the starting average
+//            if !matching
+//            {
+//                matching = true
+//                self.sxPos = xpos
+//                self.syPos = ypos
+//				
+//				cur_time = NSDate()
+//            }
+//            else
+//            {
+//				if (Gesture.TAP == direction)
+//				{
+//					// as long as not too long has passed since touchdown
+//					self.lastXPos = xpos
+//					self.lastYPos = ypos
+//					return false
+//				}
+//
+//                // already matching, if it goes over the bounds in the right direction, activate it
+//                let directionalComp = rightDirection(xpos, ypos)
+//                
+//                if directionalComp >= 0
+//                {
+//                    // if we meet the treshold
+//                    if directionalComp > minDistance
+//                    {
+//                        return true
+//                    }
+//                    
+//                    // otherwise, no problem, might match next time
+//                }
+//                else
+//                {
+//                    // broke going in the right direction, unmatch
+//                    matching = false
+//                }
+//            }
+//        }
+//        else
+//        {
+//            matching = false
+//        }
+//        
+//        return false
+//    }
 }
