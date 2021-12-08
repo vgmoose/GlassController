@@ -38,7 +38,8 @@ public func processTouchpadData(_ device: Optional<AnyObject>, _ data: Optional<
             if region.intersects(xpos, ypos, region.x, region.y - region.height, region.x + region.width, region.y)
             && action.context.valid()
             {
-                 pressed.insert(action.result)
+                action.lastFrame = finger.frame
+                pressed.insert(action.result)
             }
         }
 
@@ -46,18 +47,21 @@ public func processTouchpadData(_ device: Optional<AnyObject>, _ data: Optional<
         yAvg += ypos
     }
     
-    xAvg /= Double(fingers.count)
-    yAvg /= Double(fingers.count)
-    
-    // try to detect any gestures using the average of all the points
-    for action in glassView.gestures
-    {
-        let gesture = action.activator as! Gesture
+    if fingers.count != 0 {
+        xAvg /= Double(fingers.count)
+        yAvg /= Double(fingers.count)
         
-        // if the current conditions match the gesture
-        if gesture.matches(xAvg, yAvg, fingers.count) && action.context.valid()
+        // try to detect any gestures using the average of all the points
+        for action in glassView.gestures
         {
-            pressed.insert(action.result)
+            let gesture = action.activator as! Gesture
+            
+            // if the current conditions match the gesture
+            if gesture.matches(xAvg, yAvg, fingers.count) && action.context.valid()
+            {
+                action.lastFrame = fingers[0].frame
+                pressed.insert(action.result)
+            }
         }
     }
     

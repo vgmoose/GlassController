@@ -14,6 +14,8 @@ class Action
     var result: Result
     var activator: Activator
 	var context: Context
+    
+    var lastFrame: Int32 = -1
 	
 	convenience init(_ result: Result, _ activator: Activator)
 	{

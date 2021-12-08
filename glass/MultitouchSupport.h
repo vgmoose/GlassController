@@ -47,7 +47,7 @@ typedef struct {
 	int32_t handID;		// "H" (always 1)
 	MTVector normalizedVector;
 	float zTotal;		// "ZTot" (~quality, multiple of 1/8 between 0 and 1)
-	int32_t field9;		// always 0
+	int32_t pressure;		// for force touch pads
 	float angle;
 	float majorAxis;
 	float minorAxis;
