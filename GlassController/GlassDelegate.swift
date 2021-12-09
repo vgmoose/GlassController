@@ -147,6 +147,6 @@ class GlassDelegate : NSObject, NSApplicationDelegate
 		NSApp.activate(ignoringOtherApps: true)
 		
 		// hide the dock icon (same as LSUIElement true in Info.plist)
-		NSApp.setActivationPolicy(.accessory)
+//		NSApp.setActivationPolicy(.accessory)
 	}
 }

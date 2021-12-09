@@ -20,6 +20,9 @@ class Gesture : Activator
 	
 	var cur_time = NSDate()
     
+    // global last fire time
+    static var lockoutTime = NSDate()
+    
     // the bounds for how long this gesture should last
     // nil == no bound in that direction (relative to activated_time)
 //    var min_time: Date? = nil
@@ -81,64 +84,79 @@ class Gesture : Activator
         return -1
     }
     
-//    func matches(_ speeds: [MTPoint], _ incoming: Int) -> Bool
-//    {
-//		if incoming == 0 {
-//			if (Gesture.TAP == direction) {
-//				// if we've been up within ~half a second of the last time we went up...
-//				// and also haven't moved much... (half of regular treshold)
-//				if cur_time.timeIntervalSinceNow > -0.45 && rightDirection(lastXPos, lastYPos) < minDistance / 2
-//				{
-//					return true
-//				}
-//			}
-//		}
-//        if incoming == count
-//        {
-//            // if matching isn't true, set it and take note of the starting average
-//            if !matching
-//            {
-//                matching = true
-//                self.sxPos = xpos
-//                self.syPos = ypos
-//				
-//				cur_time = NSDate()
-//            }
-//            else
-//            {
-//				if (Gesture.TAP == direction)
-//				{
-//					// as long as not too long has passed since touchdown
-//					self.lastXPos = xpos
-//					self.lastYPos = ypos
-//					return false
-//				}
-//
-//                // already matching, if it goes over the bounds in the right direction, activate it
-//                let directionalComp = rightDirection(xpos, ypos)
-//                
-//                if directionalComp >= 0
-//                {
-//                    // if we meet the treshold
-//                    if directionalComp > minDistance
-//                    {
-//                        return true
-//                    }
-//                    
-//                    // otherwise, no problem, might match next time
-//                }
-//                else
-//                {
-//                    // broke going in the right direction, unmatch
-//                    matching = false
-//                }
-//            }
-//        }
-//        else
-//        {
-//            matching = false
-//        }
-//        
-//        return false
-//    }
+    func fire() {
+        // update the last fired time
+        Gesture.lockoutTime = NSDate()
+    }
+    
+    func canFire() -> Bool {
+        // for tap gestures, we can't fire if we aren't the first touchdown
+        
+        
+        // return true if we haven't fired recently (lock out repeat fires)
+        // default is half a second
+        return Gesture.lockoutTime.timeIntervalSinceNow < -0.45
+    }
+    
+    func matches(_ xpos: Double, _ ypos: Double, _ incoming: Int) -> Bool
+    {
+		if incoming == 0 {
+			if (Gesture.TAP == direction) {
+				// if we've been up within ~half a second of the last time we went up...
+				// and also haven't moved much... (half of regular treshold)
+				if cur_time.timeIntervalSinceNow > -0.45 && rightDirection(lastXPos, lastYPos) < minDistance / 2
+				{
+					return true
+				}
+			}
+		}
+        
+        if incoming == count
+        {
+            // if matching isn't true, set it and take note of the starting average
+            if !matching
+            {
+                matching = true
+                self.sxPos = xpos
+                self.syPos = ypos
+
+				cur_time = NSDate()
+            }
+            else
+            {
+				if (Gesture.TAP == direction)
+				{
+					// as long as not too long has passed since touchdown
+					self.lastXPos = xpos
+					self.lastYPos = ypos
+					return false
+				}
+
+                // already matching, if it goes over the bounds in the right direction, activate it
+                let directionalComp = rightDirection(xpos, ypos)
+
+                if directionalComp >= 0
+                {
+                    // if we meet the treshold
+                    if directionalComp > minDistance
+                    {
+                        return true
+                    }
+
+                    // otherwise, no problem, might match next time
+                }
+                else
+                {
+                    // broke going in the right direction, unmatch
+                    matching = false
+                }
+            }
+        }
+        else
+        {
+            matching = false
+        }
+
+        return false
+    }
 }

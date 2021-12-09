@@ -20,6 +20,9 @@ public func processTouchpadData(_ device: Optional<AnyObject>, _ data: Optional<
     // newly pressed value
     var pressed:Set<Result> = Set()
     
+    var xAvg: Double = 0
+    var yAvg: Double = 0
+    
     var fireAmounts = [
         Gesture.UP: 0,
         Gesture.DOWN: 0,
@@ -54,7 +57,6 @@ public func processTouchpadData(_ device: Optional<AnyObject>, _ data: Optional<
         
         // if this finger has a velocity amount over a treshold, increase its fire count
         if vec.velocity.y > minDist {
-            print(vec.velocity.y)
             fireAmounts[Gesture.UP]! += 1
         } else if vec.velocity.y < -minDist {
             fireAmounts[Gesture.DOWN]! += 1
@@ -69,7 +71,14 @@ public func processTouchpadData(_ device: Optional<AnyObject>, _ data: Optional<
             // moving, but not enough to count, and not enough to be still.. so toss it all out
             tossItAllOut = true
         }
+        
+        xAvg += xpos
+        yAvg += ypos
+
     }
+    
+    xAvg /= Double(fingers.count)
+    yAvg /= Double(fingers.count)
     
     // only run our gesture logic if we know we have sum(each value in fireAmounts) == fingers.count
     if !tossItAllOut {
@@ -77,16 +86,24 @@ public func processTouchpadData(_ device: Optional<AnyObject>, _ data: Optional<
             // see if we match any of the criterias
             let gesture = action.activator as! Gesture
             
-            if gesture.count == fireAmounts[gesture.direction] {
+            if gesture.direction == Gesture.TAP {
+                // taps use old matching logic
+                if gesture.matches(xAvg, yAvg, fingers.count) && action.context.valid() {
+                    pressed.insert(action.result)
+                    gesture.fire()
+                }
+            }
+            else if gesture.count == fireAmounts[gesture.direction] && gesture.canFire() && action.context.valid() {
                 // we got a matching amount of activations for this count
                 pressed.insert(action.result)
+                gesture.fire()
             }
         }
     }
     
 //    if fingers.count != 0 {
 //
-//        let speeds = fingers.map { $0.normalizedVector.velocity }
+////        let speeds = fingers.map { $0.normalizedVector.velocity }
 //
 //        // try to detect any gestures using the average of all the points
 //        for action in glassView.gestures
