@@ -15,8 +15,16 @@ import Foundation
 // TODO: multi activators, such as OrActivator or AndActivactor that can take a list of other activactors,
 // and determine whether or not to fire them based on whethery one/all are true
 
-class Activator
+class Activator : Hashable
 {
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(toString())
+	}
+
+    static func == (lhs: Activator, rhs: Activator) -> Bool {
+        return lhs.toString() == rhs.toString()
+    }
+    
     func toString() -> String
     {
         return "Unknown Activator"

@@ -10,8 +10,8 @@
 		F400005F2594FC46004C7715 /* TouchpadHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F400005D2594FC46004C7715 /* TouchpadHelpers.swift */; };
 		F436FD6424DA4FBB00397F75 /* GlassControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F436FD6324DA4FBB00397F75 /* GlassControllerApp.swift */; };
 		F436FD6624DA4FBB00397F75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F436FD6524DA4FBB00397F75 /* ContentView.swift */; };
-		F436FD6824DA4FBD00397F75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F436FD6724DA4FBD00397F75 /* Assets.xcassets */; };
 		F436FD6B24DA4FBD00397F75 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F436FD6A24DA4FBD00397F75 /* Preview Assets.xcassets */; };
+		F453DD172BD47CF800A01D37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F453DD162BD47CF800A01D37 /* Assets.xcassets */; };
 		F489F847272792DA004FC738 /* GlassDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED8200C777B00E201B5 /* GlassDelegate.swift */; };
 		F489F848272792DB004FC738 /* MultitouchSupport.h in Sources */ = {isa = PBXBuildFile; fileRef = 9C46F5982009B81800F9E926 /* MultitouchSupport.h */; };
 		F489F849272792DB004FC738 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C522ED6200C771900E201B5 /* GlassView.swift */; };
@@ -63,10 +63,10 @@
 		F436FD6124DA4FBB00397F75 /* GlassController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlassController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F436FD6324DA4FBB00397F75 /* GlassControllerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassControllerApp.swift; sourceTree = "<group>"; };
 		F436FD6524DA4FBB00397F75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		F436FD6724DA4FBD00397F75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F436FD6A24DA4FBD00397F75 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F436FD6C24DA4FBD00397F75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F436FD6D24DA4FBD00397F75 /* GlassController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlassController.entitlements; sourceTree = "<group>"; };
+		F453DD162BD47CF800A01D37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F493045B24DAAD97005BE41A /* ActionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +92,7 @@
 		9C46F5852009B7C000F9E926 = {
 			isa = PBXGroup;
 			children = (
+				F453DD162BD47CF800A01D37 /* Assets.xcassets */,
 				9C522ECA200C6D8900E201B5 /* glass */,
 				F436FD6224DA4FBB00397F75 /* GlassController */,
 				9C46F5912009B7E900F9E926 /* Products */,
@@ -178,7 +179,6 @@
 				F493045B24DAAD97005BE41A /* ActionRowView.swift */,
 				9C522ED8200C777B00E201B5 /* GlassDelegate.swift */,
 				F436FD6C24DA4FBD00397F75 /* Info.plist */,
-				F436FD6724DA4FBD00397F75 /* Assets.xcassets */,
 				F436FD6D24DA4FBD00397F75 /* GlassController.entitlements */,
 				F436FD6924DA4FBD00397F75 /* Preview Content */,
 			);
@@ -257,8 +257,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F453DD172BD47CF800A01D37 /* Assets.xcassets in Resources */,
 				F436FD6B24DA4FBD00397F75 /* Preview Assets.xcassets in Resources */,
-				F436FD6824DA4FBD00397F75 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +349,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"GlassController/Preview Content\"";
 				DEVELOPMENT_TEAM = 9UDT7LSCEF;
@@ -428,7 +428,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"GlassController/Preview Content\"";
 				DEVELOPMENT_TEAM = 9UDT7LSCEF;

@@ -9,8 +9,18 @@ import AppKit
 
 // Action is a pairing of KeyBinding and Activator
 
-class Action
+class Action : Hashable
 {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(result)
+        hasher.combine(activator)
+        hasher.combine(context)
+    }
+    
+    static func == (lhs: Action, rhs: Action) -> Bool {
+        return lhs.result == rhs.result && lhs.activator == rhs.activator && lhs.context == rhs.context
+    }
+    
     var result: Result
     var activator: Activator
 	var context: Context

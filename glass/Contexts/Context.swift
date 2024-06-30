@@ -10,8 +10,16 @@ import AppKit
 // A context contains passive information that should be checked before the activator is invoked
 // to determine whether or not to fire that action's result
 // the main difference between an Activator and a Context is an Activactor relies on some touchpad specific data
-class Context
+class Context : Hashable
 {
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(bundle)
+	}
+	
+    static func == (lhs: Context, rhs: Context) -> Bool {
+        return lhs.bundle == rhs.bundle
+    }
+    
 	var bundle: String
     
     init(_ bundle: String = "*")

@@ -18,6 +18,8 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 	
 	let glassView: GlassView
 	let glassDelegate: GlassDelegate
+    
+    static var glassViewSingleton: GlassView?
 	
     func createTableCol(_ tableView: NSTableView, _ text: String)
     {
@@ -57,6 +59,7 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         button.target = glassView
         button.action = #selector(GlassView.showGlass)
         button.frame = NSMakeRect(0, 0, 250, 20)
+		button.frame.origin = CGPoint(x: 250, y: 50)
         button.title = "Show Touchpad Preview"
         inner.addSubview(button)
 		
@@ -80,18 +83,17 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
 		importB.frame.origin = CGPoint(x: 80, y: 50)
 		inner.addSubview(importB)
         
-        // the + and - buttons for actions
-//        let controls = NSSegmentedControl()
-//        controls.frame = NSMakeRect(0, 0, 100, 30)
-//        controls.frame.origin = CGPoint(x: 5, y: 70)
-//        controls.segmentCount = 2
-//        controls.setLabel("+", forSegment: 0)
-//        controls.setLabel("-", forSegment: 1)
-//        controls.segmentStyle = .smallSquare
-//        if #available(OSX 10.10.3, *) {
-//            controls.trackingMode = .momentary
-//        }
-//        inner.addSubview(controls)
+        let notice = NSTextField()
+		notice.isEditable = false
+		notice.isSelectable = false
+		notice.isBordered = false
+		notice.backgroundColor = NSColor.clear
+		notice.textColor = NSColor.gray
+		notice.alignment = .center
+		notice.stringValue = "Currently, JSON files must be manually edited to add new actions. See the README for more information."
+		notice.frame = NSMakeRect(0, 0, 750, 20)
+		notice.frame.origin = CGPoint(x: 0, y: 75)
+		inner.addSubview(notice)
         
         // the current regions on the touchpad and action mappings
         let tableContainer = NSScrollView(frame:NSMakeRect(0, 0, WIDTH, HEIGHT-100))
@@ -109,6 +111,8 @@ class GlassPreferences : NSWindow, NSTableViewDelegate, NSTableViewDataSource
         tableView.tableColumns[2].width = 150
         
         inner.addSubview(tableContainer)
+        
+        GlassPreferences.glassViewSingleton = glassView
 
     }
     

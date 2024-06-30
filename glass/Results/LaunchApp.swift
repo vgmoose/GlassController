@@ -26,7 +26,16 @@ class LaunchApp : Result
     
     override func invoke(_ enabled: Bool)
     {
-		NSWorkspace.shared.launchApplication(key);
+        // https://stackoverflow.com/a/58241536
+        let url = NSURL(fileURLWithPath: key, isDirectory: true) as URL
+
+        let path = "/bin"
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.arguments = [path]
+        NSWorkspace.shared.openApplication(at: url,
+                                           configuration: configuration,
+                                           completionHandler: nil)
+//		NSWorkspace.shared.launchApplication(key);
     }
 	
 	override func serialize() -> [String: Any]?
