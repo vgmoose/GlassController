@@ -1,0 +1,61 @@
+{
+  "name": "Side Demo",
+  "actions" : [
+    {
+      "result" : {
+        "type" : "Shortcut",
+        "shortcut": "Increase Brightness"
+      },
+      "activator" : {
+        "y" : 0.95,
+        "width" : 0.01,
+        "type" : "Region",
+        "height" : 0.4,
+        "x" : 0
+      },
+      "context" : null
+    },
+    {
+      "result" : {
+        "type" : "Shortcut",
+        "shortcut": "Decrease Brightness"
+      },
+      "activator" : {
+        "y" : 0.45,
+        "width" : 0.01,
+        "type" : "Region",
+        "height" : 0.4,
+        "x" : 0
+      },
+      "context" : null
+    },
+    {
+        "result" : {
+          "type" : "Shortcut",
+          "shortcut": "Increase Volume"
+        },
+        "activator" : {
+          "y" : 0.95,
+          "width" : 0.025,
+          "type" : "Region",
+          "height" : 0.4,
+          "x" : 0.99
+        },
+        "context" : null
+      },
+      {
+        "result" : {
+          "type" : "Shortcut",
+          "shortcut": "Decrease Volume"
+        },
+        "activator" : {
+          "y" : 0.45,
+          "width" : 0.025,
+          "type" : "Region",
+          "height" : 0.4,
+          "x" : 0.99
+        },
+        "context" : null
+      }
+  ]
+}

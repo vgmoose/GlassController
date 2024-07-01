@@ -52,7 +52,11 @@ class Result : Hashable
 				if let button = data["button"] as? Int, let modifiers = data["modifiers"] as? [Int] {
 					return MouseClick(CGMouseButton(rawValue: UInt32(button))!, modifiers)
 				}
-			}
+            } else if type == "Shortcut" {
+				if let shortcut = data["shortcut"] as? String {
+					return Shortcut(shortcut)
+				}
+            }
 		}
 		
 		return Result()

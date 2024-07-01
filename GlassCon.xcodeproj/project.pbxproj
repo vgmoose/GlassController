@@ -30,6 +30,7 @@
 		F489F8562727A96D004FC738 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C34F9A4200EEC9300EA3EA7 /* IOKit.framework */; };
 		F489F8572727A973004FC738 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C345B4C200B157E00B54969 /* ApplicationServices.framework */; };
 		F489F8582727AA79004FC738 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B75D210E25D2004AA89E /* Utils.m */; };
+		F48F8BF52C322BD4003DFD73 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F8BF42C322BD4003DFD73 /* Shortcut.swift */; };
 		F493045C24DAAD97005BE41A /* ActionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493045B24DAAD97005BE41A /* ActionRowView.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		F436FD6C24DA4FBD00397F75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F436FD6D24DA4FBD00397F75 /* GlassController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlassController.entitlements; sourceTree = "<group>"; };
 		F453DD162BD47CF800A01D37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F48F8BF42C322BD4003DFD73 /* Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
 		F493045B24DAAD97005BE41A /* ActionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 				9CA8B757210D77D7004AA89E /* KeyBinding.swift */,
 				9CA8B76621116470004AA89E /* LaunchApp.swift */,
 				9CCFD0EC222B2C4200FFC729 /* MouseClick.swift */,
+				F48F8BF42C322BD4003DFD73 /* Shortcut.swift */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				F489F84C272792DB004FC738 /* Activator.swift in Sources */,
 				F489F84D272792DB004FC738 /* Region.swift in Sources */,
 				F489F84E272792DB004FC738 /* Gesture.swift in Sources */,
+				F48F8BF52C322BD4003DFD73 /* Shortcut.swift in Sources */,
 				F489F84F272792DB004FC738 /* Result.swift in Sources */,
 				F489F850272792DB004FC738 /* KeyBinding.swift in Sources */,
 				F489F851272792DB004FC738 /* LaunchApp.swift in Sources */,
@@ -349,7 +353,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"GlassController/Preview Content\"";
 				DEVELOPMENT_TEAM = 9UDT7LSCEF;
@@ -372,9 +376,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = GlassController/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -428,7 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"GlassController/Preview Content\"";
 				DEVELOPMENT_TEAM = 9UDT7LSCEF;
@@ -445,9 +450,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = GlassController/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = llc.newt.apps.glass;
