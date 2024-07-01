@@ -31,6 +31,7 @@
 		F489F8572727A973004FC738 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C345B4C200B157E00B54969 /* ApplicationServices.framework */; };
 		F489F8582727AA79004FC738 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8B75D210E25D2004AA89E /* Utils.m */; };
 		F48F8BF52C322BD4003DFD73 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F8BF42C322BD4003DFD73 /* Shortcut.swift */; };
+		F48F8BF72C32336A003DFD73 /* RegionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F8BF62C32336A003DFD73 /* RegionContext.swift */; };
 		F493045C24DAAD97005BE41A /* ActionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493045B24DAAD97005BE41A /* ActionRowView.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		F436FD6D24DA4FBD00397F75 /* GlassController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlassController.entitlements; sourceTree = "<group>"; };
 		F453DD162BD47CF800A01D37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F48F8BF42C322BD4003DFD73 /* Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
+		F48F8BF62C32336A003DFD73 /* RegionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionContext.swift; sourceTree = "<group>"; };
 		F493045B24DAAD97005BE41A /* ActionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				9CA8B7692111709B004AA89E /* Context.swift */,
+				F48F8BF62C32336A003DFD73 /* RegionContext.swift */,
 			);
 			path = Contexts;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				F489F848272792DB004FC738 /* MultitouchSupport.h in Sources */,
 				F489F849272792DB004FC738 /* GlassView.swift in Sources */,
 				F489F84A272792DB004FC738 /* GlassPreferences.swift in Sources */,
+				F48F8BF72C32336A003DFD73 /* RegionContext.swift in Sources */,
 				F489F84B272792DB004FC738 /* Action.swift in Sources */,
 				F489F84C272792DB004FC738 /* Activator.swift in Sources */,
 				F489F84D272792DB004FC738 /* Region.swift in Sources */,

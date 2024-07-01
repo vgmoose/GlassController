@@ -160,6 +160,23 @@ class GlassView : NSView
             NSColor.red.withAlphaComponent(CGFloat(0.3)).setFill()
             path.fill()
         }
+        
+        // TODO: copy'd from above, due to Regions and RegionContexts both existing
+        for action in gestures
+        {
+            if let region = action.context as? RegionContext {
+                var center = CGPoint()
+                let bounds = self.bounds
+                
+                let dimens = CGSize(width: bounds.width * CGFloat(region.width), height: bounds.height * CGFloat(region.height))
+                center.x = bounds.width * CGFloat(region.x)
+                center.y = bounds.height * CGFloat(region.y) - dimens.height
+                
+                let path = NSBezierPath(rect: CGRect(origin: center, size: dimens))
+                NSColor.red.withAlphaComponent(CGFloat(0.3)).setFill()
+                path.fill()
+            }
+        }
     }
 	
 	func fromJSON(_ jsonString: String)

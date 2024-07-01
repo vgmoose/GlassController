@@ -15,6 +15,7 @@ A **Result** is the output of whatever Activator+Context occurs. This can be one
 - KeyBinding: Press a given key, while holding zero or more modifier keys (like Cmd)
 - LaunchApp: Start an app given the full path to the .app file
 - MouseClick: Perform a mouse click with the given mouse button, while holding modifiers, at the current coordinates
+- Shortcut: Run an installed Apple Shortcuts "Shortcut" by name
 
 ### Activator
 Activators are inputs that occur on the Touchpad that must occur in order for the given Result to fire.
@@ -25,10 +26,11 @@ There are three types of Activators:
 - Region: Having any number of fingers over a region defined by a given x/y, width/height percentile coordinates
 
 ### Context
-A Context is something external to the touchpad state that should be met for the touchpad Activator to qualify
+A Context is some criteria that should be met for the Activator to qualify
 
-Currently there's one Context:
+There are two Contexts:
 - AppBundle: Only listen when an app with the given bundle ID is in the foreground
+- Region: Similar to the Region Activator, enough touches need to be in the specified region in order to fire
 
 ## About
 The goal of this project is to allow regions of the touchpad to be assigned keyboard/controller buttons, so that the touchpad can be used in place of the keys on a keyboard or an external device. This is my third attempt at trying to create something like this, my old attempts are [Fpad 2](https://github.com/vgmoose/fpad2) and [Fingerpad](https://github.com/vgmoose/fingerpad).

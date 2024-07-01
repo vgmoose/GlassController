@@ -1,0 +1,77 @@
+{
+  "name": "Vol/Brightness Swipes",
+  "actions" : [
+    {
+      "result" : {
+        "type" : "Shortcut",
+        "shortcut": "Increase Brightness"
+      },
+      "activator" : {
+        "type" : "Swipe",
+        "direction" : 0,
+        "fingers" : 1
+      },
+      "context" : {
+        "type" : "Region",
+        "x" : 0,
+        "y" : 0.95,
+        "width" : 0.02,
+        "height" : 0.9
+      }
+    },
+    {
+      "result" : {
+        "type" : "Shortcut",
+        "shortcut": "Decrease Brightness"
+      },
+      "activator" : {
+        "type" : "Swipe",
+        "direction" : 1,
+        "fingers" : 1
+      },
+      "context" : {
+        "type" : "Region",
+        "x" : 0,
+        "y" : 0.95,
+        "width" : 0.02,
+        "height" : 0.9
+      }
+    },
+    {
+      "result" : {
+        "type" : "Shortcut",
+        "shortcut": "Increase Volume"
+      },
+      "activator" : {
+        "type" : "Swipe",
+        "direction" : 0,
+        "fingers" : 1
+      },
+      "context" : {
+        "type" : "Region",
+        "x" : 0.98,
+        "y" : 0.95,
+        "width" : 0.02,
+        "height" : 0.9
+      }
+    },
+    {
+      "result" : {
+        "type" : "Shortcut",
+        "shortcut": "Decrease Volume"
+      },
+      "activator" : {
+        "type" : "Swipe",
+        "direction" : 1,
+        "fingers" : 1
+      },
+      "context" : {
+        "type" : "Region",
+        "x" : 0.98,
+        "y" : 0.95,
+        "width" : 0.02,
+        "height" : 0.9
+      }
+    }
+  ]
+}

@@ -83,17 +83,31 @@ public func processTouchpadData(_ device: Optional<AnyObject>, _ data: Optional<
     // only run our gesture logic if we know we have sum(each value in fireAmounts) == fingers.count
     if !tossItAllOut {
         for action in glassView.gestures {
+            
+            // only run this gesture if at least count fingers meat the context
+            // TODO: clean up this kind of combo check (see top of RegionControl)
+            var validContexts = 0
+            for finger in fingers {
+                let vec = finger.normalizedVector
+                let xpos = Double(vec.position.x)
+                let ypos = Double(vec.position.y)
+                
+                if action.context.valid(xpos, ypos) {
+                    validContexts += 1
+                }
+            }
+            
             // see if we match any of the criterias
             let gesture = action.activator as! Gesture
             
-            if gesture.direction == Gesture.TAP {
+            if gesture.direction == Gesture.TAP && validContexts > 0 { // tap only needs 1 finger to match
                 // taps use old matching logic
-                if gesture.matches(xAvg, yAvg, fingers.count) && action.context.valid() {
+                if gesture.matches(xAvg, yAvg, fingers.count) {
                     pressed.insert(action.result)
                     gesture.fire()
                 }
             }
-            else if gesture.count == fireAmounts[gesture.direction] && gesture.canFire() && action.context.valid() {
+            else if gesture.count == fireAmounts[gesture.direction] && gesture.canFire() && validContexts >= gesture.count {
                 // we got a matching amount of activations for this count
                 pressed.insert(action.result)
                 gesture.fire()

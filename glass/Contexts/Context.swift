@@ -27,7 +27,7 @@ class Context : Hashable
         self.bundle = bundle
     }
     
-    func valid() -> Bool
+    func valid(_ cx: Double = 0, _ cy: Double = 0) -> Bool
     {
 		// allow in any context
 		if bundle == "*" {
@@ -67,7 +67,12 @@ class Context : Hashable
 				if let bundle = data["bundle"] as? String {
 					return Context(bundle)
 				}
-			}
+            } else if type == "Region" {
+                if let x = data["x"] as? Double, let y = data["y"] as? Double,
+                    let width = data["width"] as? Double, let height = data["height"] as? Double {
+                    return RegionContext(x, y, width, height)
+                }
+            }
 		}
 		
 		return Context()
